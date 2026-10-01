@@ -139,7 +139,7 @@ export function WallpaperScratchpad() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.20 }}
+          transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center select-none overflow-hidden"
           style={{
             background: "rgba(19, 15, 17, 0.65)",
@@ -206,8 +206,8 @@ export function WallpaperScratchpad() {
                       opacity: cardAlpha,
                     }}
                     transition={{
-                      duration: 0.28,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: 0.55,
+                      ease: [0.16, 1, 0.3, 1],
                     }}
                     className={`absolute cursor-pointer rounded-2xl overflow-hidden transform-gpu gpu-layer ${
                       isCenter 
@@ -225,6 +225,7 @@ export function WallpaperScratchpad() {
                       boxShadow: isCenter 
                         ? "0 0 35px -5px rgba(225, 131, 194, 0.45), 0 15px 35px rgba(0,0,0,0.6)" 
                         : "0 10px 30px rgba(0,0,0,0.5)",
+                      transition: "border-color 0.4s ease, box-shadow 0.4s ease",
                     }}
                   >
                     {/* Wallpaper Surface */}
@@ -241,7 +242,7 @@ export function WallpaperScratchpad() {
                       {/* Dimming overlay on background cards */}
                       {!isCenter && (
                         <div 
-                          className="absolute inset-0 transition-opacity duration-200 pointer-events-none"
+                          className="absolute inset-0 transition-opacity duration-500 ease-out pointer-events-none"
                           style={{ 
                             backgroundColor: `rgba(10, 8, 9, ${darkAlpha})`,
                           }} 
@@ -260,10 +261,10 @@ export function WallpaperScratchpad() {
               <AnimatePresence mode="wait">
                 <motion.h3
                   key={currentTheme.id}
-                  initial={{ opacity: 0, y: 6 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.18 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="font-mono font-bold text-xl sm:text-2xl text-white tracking-wide"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
                 >

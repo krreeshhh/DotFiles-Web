@@ -82,10 +82,10 @@ export function DesktopSimulation() {
           <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={activeTheme.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              transition={{ duration: 0.70, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 transform-gpu pointer-events-none z-0 overflow-hidden"
             >
               <Image
