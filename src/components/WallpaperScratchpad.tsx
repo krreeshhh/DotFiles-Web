@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { useTheme } from "./ThemeProvider";
 import { WALLPAPER_THEMES, WallpaperTheme } from "@/lib/theme";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,14 +17,6 @@ export function WallpaperScratchpad() {
   const initialIndex = Math.max(0, WALLPAPER_THEMES.findIndex(t => t.id === activeTheme.id));
   const [currentIndex, setCurrentIndex] = useState(initialIndex >= 0 ? initialIndex : 0);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Preload all wallpaper images into memory on mount
-  useEffect(() => {
-    WALLPAPER_THEMES.forEach((theme) => {
-      const img = new Image();
-      img.src = `/wallpapers/${encodeURIComponent(theme.filename)}`;
-    });
-  }, []);
 
   // Synchronize index when scratchpad opens or active theme changes
   useEffect(() => {
@@ -237,14 +230,20 @@ export function WallpaperScratchpad() {
                     }}
                   >
                     {/* Wallpaper Surface */}
-                    <div 
-                      className="w-full h-full bg-cover bg-center relative"
-                      style={{ backgroundImage: `url('/wallpapers/${encodeURIComponent(theme.filename)}')` }}
-                    >
+                    <div className="w-full h-full relative overflow-hidden">
+                      <Image
+                        src={`/wallpapers/${encodeURIComponent(theme.filename)}`}
+                        alt={theme.name}
+                        fill
+                        loading={isCenter ? "eager" : "lazy"}
+                        decoding="async"
+                        sizes="(max-width: 640px) 80vw, 640px"
+                        className="object-cover object-center pointer-events-none"
+                      />
                       {/* Dimming overlay on background cards */}
                       {!isCenter && (
                         <div 
-                          className="absolute inset-0 transition-opacity duration-300"
+                          className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
                           style={{ 
                             backgroundColor: `rgba(10, 8, 9, ${darkAlpha})`,
                           }} 

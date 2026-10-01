@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { useTheme } from "./ThemeProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -85,11 +86,17 @@ export function DesktopSimulation() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 bg-cover bg-center will-change-transform transform-gpu pointer-events-none z-0"
-              style={{ 
-                backgroundImage: `url('/wallpapers/${encodeURIComponent(activeTheme.filename)}')` 
-              }}
-            />
+              className="absolute inset-0 will-change-transform transform-gpu pointer-events-none z-0 overflow-hidden"
+            >
+              <Image
+                src={`/wallpapers/${encodeURIComponent(activeTheme.filename)}`}
+                alt={activeTheme.name}
+                fill
+                priority
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="object-cover object-center"
+              />
+            </motion.div>
           </AnimatePresence>
 
           {/* Subtle wallpaper darkening for depth */}
