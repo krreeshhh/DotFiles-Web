@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #e183c2;
+  --color-on-primary: #121214;
+  --color-primary-container: #401b34;
+  --color-secondary: #d8a5ca;
+  --color-background: #130f12;
+  --color-surface: #1f181d;
+  --color-surface-variant: #2c2028;
+  --color-surface-selected: #401b34;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #a5a5aa;
+  --color-outline: #412f3b;
+  --color-outline-subtle: #25252a;
+  --color-error: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.2s ease, box-shadow 0.4s ease;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: var(--color-primary);
+  selection-color: var(--color-on-primary);
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Glassmorphic Components */
+.glass-panel {
+  background: rgba(31, 24, 29, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-bar {
+  background: rgba(19, 15, 18, 0.60);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glow-border {
+  border-color: var(--color-outline);
+  box-shadow: 0 0 25px -5px rgba(225, 131, 194, 0.15);
+}
+
+.glow-pill {
+  box-shadow: 0 0 15px -3px rgba(225, 131, 194, 0.35);
+}
