@@ -43,9 +43,9 @@ const STAGES = [
   },
   {
     icon: LuZap,
-    title: "Walker + Elephant D-Bus",
-    desc: 'Sub-millisecond application and command search engine running over native D-Bus providers, integrated directly into Quickshell QML dialogs.',
-    code: 'backend: elephant-desktopapplications-bin',
+    title: "Quickshell App Launcher",
+    desc: 'Custom QML layer-shell launcher with dynamic application search, web app integration, and plugin management bound to SUPER + SPACE.',
+    code: 'ipc: quickshell ipc call shell toggleAppLauncher',
     codeHighlight: "text-primary"
   },
   {

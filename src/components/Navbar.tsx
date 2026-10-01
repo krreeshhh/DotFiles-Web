@@ -181,7 +181,7 @@ export function Navbar() {
             <button
               onClick={() => setAppLauncherOpen(true)}
               className="p-1 rounded-md text-white/70 hover:text-primary hover:bg-white/5 transition-all"
-              title="Launch Apps (SUPER + SPACE)"
+              title="Quickshell App Launcher (SUPER + SPACE)"
             >
               <SiArchlinux className="w-3.5 h-3.5" />
             </button>
@@ -690,7 +690,7 @@ export function Navbar() {
                 <LuSearch className="w-5 h-5 text-primary shrink-0" />
                 <input 
                   type="text" 
-                  placeholder="Search applications, keybindings, files..." 
+                  placeholder="Search applications, web apps, plugins..." 
                   className="w-full bg-transparent text-xs sm:text-sm font-mono text-white focus:outline-hidden placeholder:text-white/40"
                   autoFocus
                 />

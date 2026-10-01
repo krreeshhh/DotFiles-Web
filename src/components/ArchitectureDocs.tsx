@@ -165,8 +165,8 @@ export function ArchitectureDocs() {
                     <span className="text-[10px] font-mono text-on-surface-variant">aur-runtime.txt</span>
                   </div>
                   <ul className="font-mono text-xs space-y-1.5 text-on-surface-variant">
-                    <li>• <strong className="text-on-surface">quickshell-git</strong> (Modular QML Shell)</li>
-                    <li>• <strong className="text-on-surface">walker-bin, elephant-bin</strong> (App Search)</li>
+                    <li>• <strong className="text-on-surface">quickshell-git</strong> (Modular QML Shell & App Launcher)</li>
+                    <li>• <strong className="text-on-surface">walker-bin, elephant-bin</strong> (Search Engine Daemon)</li>
                     <li>• <strong className="text-on-surface">brave-bin</strong> (Web Browser)</li>
                     <li>• <strong className="text-on-surface">vesktop-bin</strong> (Discord Client)</li>
                     <li>• <strong className="text-on-surface">whitesur-gtk-theme</strong> (GTK Aesthetics)</li>

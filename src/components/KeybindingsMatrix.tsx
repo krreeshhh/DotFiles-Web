@@ -15,7 +15,7 @@ interface Keybind {
 
 const KEYBINDINGS: Keybind[] = [
   { combo: ["SUPER", "RETURN"], action: "Open Ghostty Terminal", category: "Launchers", description: "Launches GPU-accelerated Ghostty with 0.20 opacity" },
-  { combo: ["SUPER", "SPACE"], action: "Application Launcher", category: "Launchers", description: "quickshell ipc call shell toggleAppLauncher (Quickshell QML Launcher)" },
+  { combo: ["SUPER", "SPACE"], action: "Quickshell App Launcher", category: "Launchers", description: "quickshell ipc call shell toggleAppLauncher (Quickshell QML AppLauncher.qml)" },
   { combo: ["SUPER", "E"], action: "Open File Manager", category: "Launchers", description: "Launches Nautilus / Thunar file manager" },
   { combo: ["SUPER", "B"], action: "Open Web Browser", category: "Launchers", description: "Launches Brave Browser" },
   { combo: ["SUPER", "C"], action: "Control Center", category: "Launchers", description: "Toggles Quickshell quick settings and sliders" },

@@ -441,7 +441,7 @@ export function DesktopSimulation() {
                   <div className="flex items-center justify-between pb-2.5 border-b border-outline/40 mb-3 sm:mb-4">
                     <div className="flex items-center gap-2 text-primary font-mono text-xs sm:text-sm font-bold truncate mr-2">
                       <LuSearch className="w-4 h-4 shrink-0" />
-                      <span className="truncate">Application Launcher</span>
+                      <span className="truncate">Quickshell App Launcher</span>
                     </div>
                     <button 
                       onClick={() => setLauncherOpen(false)}
