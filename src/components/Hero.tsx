@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTheme } from "./ThemeProvider";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
 import { 
@@ -50,6 +51,7 @@ const INSTALL_TABS: InstallTab[] = [
 ];
 
 export function Hero() {
+  const { toggleScratchpad } = useTheme();
   const [activeTab, setActiveTab] = useState<InstallTab>(INSTALL_TABS[0]);
   const [copied, setCopied] = useState(false);
 
@@ -138,6 +140,13 @@ export function Hero() {
           <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
             <LuPlay className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Universal PiP
           </span>
+          <button 
+            onClick={toggleScratchpad}
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-primary/15 border border-primary/40 text-[10px] sm:text-xs font-mono text-primary hover:bg-primary/25 transition-all cursor-pointer shadow-xs"
+            title="Press W to open Wallpaper & Theme Scratchpad"
+          >
+            <LuSparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary animate-pulse" /> Press <kbd className="px-1 py-0.2 bg-primary/20 rounded font-bold">W</kbd> for Wallpapers
+          </button>
         </motion.div>
 
         {/* Interactive Quick Install Terminal Card */}

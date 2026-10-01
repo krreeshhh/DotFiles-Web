@@ -7,12 +7,16 @@ interface ThemeContextType {
   activeTheme: WallpaperTheme;
   setTheme: (theme: WallpaperTheme) => void;
   setThemeById: (id: string) => void;
+  scratchpadOpen: boolean;
+  setScratchpadOpen: (open: boolean) => void;
+  toggleScratchpad: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [activeTheme, setActiveTheme] = useState<WallpaperTheme>(WALLPAPER_THEMES[0]);
+  const [scratchpadOpen, setScratchpadOpen] = useState(false);
   const rafRef = useRef<number | null>(null);
 
   const applyColors = useCallback((theme: WallpaperTheme) => {
@@ -52,6 +56,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [setTheme]);
 
+  const toggleScratchpad = useCallback(() => {
+    setScratchpadOpen((prev) => !prev);
+  }, []);
+
+  // Global 'W' key shortcut to toggle the wallpaper scratchpad
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (e.key === "w" || e.key === "W") {
+        e.preventDefault();
+        setScratchpadOpen((prev) => !prev);
+      } else if (e.key === "Escape") {
+        setScratchpadOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   useEffect(() => {
     applyColors(activeTheme);
     return () => {
@@ -62,7 +95,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [activeTheme, applyColors]);
 
   return (
-    <ThemeContext.Provider value={{ activeTheme, setTheme, setThemeById }}>
+    <ThemeContext.Provider 
+      value={{ 
+        activeTheme, 
+        setTheme, 
+        setThemeById, 
+        scratchpadOpen, 
+        setScratchpadOpen, 
+        toggleScratchpad 
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

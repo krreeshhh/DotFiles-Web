@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { DesktopSimulation } from "@/components/DesktopSimulation";
-import { WallpaperPalettePicker } from "@/components/WallpaperPalettePicker";
+import { WallpaperScratchpad } from "@/components/WallpaperScratchpad";
 import { ScrollShowcase } from "@/components/ScrollShowcase";
 import { KeybindingsMatrix } from "@/components/KeybindingsMatrix";
 import { ArchitectureDocs } from "@/components/ArchitectureDocs";
@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <DesktopSimulation />
-      <WallpaperPalettePicker />
+      <WallpaperScratchpad />
       <ScrollShowcase />
       <KeybindingsMatrix />
       <ArchitectureDocs />

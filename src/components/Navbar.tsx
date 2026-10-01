@@ -39,7 +39,7 @@ import {
 } from "react-icons/si";
 
 export function Navbar() {
-  const { activeTheme } = useTheme();
+  const { activeTheme, scratchpadOpen, setScratchpadOpen, toggleScratchpad } = useTheme();
 
   // Navigation & Workspace State
   const [activeWorkspace, setActiveWorkspace] = useState(1);
@@ -84,8 +84,6 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
-      const previewEl = document.getElementById("preview");
-      const wallpapersEl = document.getElementById("wallpapers");
       const archEl = document.getElementById("architecture");
       const keysEl = document.getElementById("keybindings");
       const installEl = document.getElementById("install");
@@ -96,8 +94,6 @@ export function Navbar() {
         setActiveWorkspace(4);
       } else if (archEl && scrollPos >= archEl.offsetTop) {
         setActiveWorkspace(3);
-      } else if (wallpapersEl && scrollPos >= wallpapersEl.offsetTop) {
-        setActiveWorkspace(2);
       } else {
         setActiveWorkspace(1);
       }
@@ -109,9 +105,12 @@ export function Navbar() {
 
   const handleWorkspaceClick = (wsId: number) => {
     setActiveWorkspace(wsId);
+    if (wsId === 2) {
+      toggleScratchpad();
+      return;
+    }
     const targetMap: Record<number, string> = {
       1: "#preview",
-      2: "#wallpapers",
       3: "#architecture",
       4: "#keybindings",
       5: "#install",
@@ -689,17 +688,17 @@ export function Navbar() {
               {/* Quick Launch App Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
                 {[
-                  { name: "Ghostty", cmd: "SUPER + RETURN", icon: LuTerminal },
-                  { name: "Themes", cmd: "SUPER + T", icon: LuSparkles },
-                  { name: "Files", cmd: "SUPER + E", icon: LuFolder },
-                  { name: "Brave", cmd: "SUPER + B", icon: SiBrave },
-                  { name: "Settings", cmd: "SUPER + C", icon: LuSlidersHorizontal },
-                  { name: "PiP Pin", cmd: "SUPER + P", icon: LuPin },
+                  { name: "Ghostty", cmd: "SUPER + RETURN", icon: LuTerminal, action: () => setAppLauncherOpen(false) },
+                  { name: "Themes (W)", cmd: "W / SUPER + T", icon: LuSparkles, action: () => { setAppLauncherOpen(false); setScratchpadOpen(true); } },
+                  { name: "Files", cmd: "SUPER + E", icon: LuFolder, action: () => setAppLauncherOpen(false) },
+                  { name: "Brave", cmd: "SUPER + B", icon: SiBrave, action: () => setAppLauncherOpen(false) },
+                  { name: "Settings", cmd: "SUPER + C", icon: LuSlidersHorizontal, action: () => { setAppLauncherOpen(false); setControlCenterOpen(true); } },
+                  { name: "PiP Pin", cmd: "SUPER + P", icon: LuPin, action: () => setAppLauncherOpen(false) },
                 ].map((app, i) => (
                   <button 
                     key={i}
-                    onClick={() => setAppLauncherOpen(false)}
-                    className="flex flex-col items-start p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group"
+                    onClick={app.action}
+                    className="flex flex-col items-start p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group cursor-pointer"
                   >
                     <app.icon className="w-4 h-4 text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-semibold text-white">{app.name}</span>

@@ -19,7 +19,7 @@ const KEYBINDINGS: Keybind[] = [
   { combo: ["SUPER", "E"], action: "Open File Manager", category: "Launchers", description: "Launches Nautilus / Thunar file manager" },
   { combo: ["SUPER", "B"], action: "Open Web Browser", category: "Launchers", description: "Launches Brave Browser" },
   { combo: ["SUPER", "C"], action: "Control Center", category: "Launchers", description: "Toggles Quickshell quick settings and sliders" },
-  { combo: ["SUPER", "P"], action: "Toggle PiP Window", category: "Launchers", description: "Pins floating Picture-in-Picture video to top" },
+  { combo: ["W"], action: "Wallpaper & Palette Scratchpad", category: "Launchers", description: "Opens floating Cover Flow wallpaper selector. Enter applies theme." },
   { combo: ["SUPER", "T"], action: "Theme Switcher", category: "Launchers", description: "Opens Material You wallpaper and theme switcher" },
   
   { combo: ["SUPER", "Q"], action: "Close Active Window", category: "Window", description: "Closes currently focused Hyprland client" },
