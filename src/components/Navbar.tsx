@@ -27,7 +27,6 @@ import {
   LuPower, 
   LuRefreshCw, 
   LuMoon, 
-  LuEye,
   LuSparkles,
   LuPin
 } from "react-icons/lu";
@@ -45,6 +44,7 @@ export function Navbar() {
   // Navigation & Workspace State
   const [activeWorkspace, setActiveWorkspace] = useState(1);
   const [formattedTime, setFormattedTime] = useState("09:20 PM  Thu 01");
+  const [shortTime, setShortTime] = useState("09:20 PM");
 
   // Popups & Drawer States
   const [controlCenterOpen, setControlCenterOpen] = useState(false);
@@ -73,6 +73,7 @@ export function Navbar() {
       const dayName = days[now.getDay()];
       const dayNum = String(now.getDate()).padStart(2, "0");
       setFormattedTime(`${hours}:${minutes} ${ampm}  ${dayName} ${dayNum}`);
+      setShortTime(`${hours}:${minutes} ${ampm}`);
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
@@ -133,24 +134,24 @@ export function Navbar() {
   return (
     <>
       {/* ==================================================================== */}
-      {/* 1. TOPBAR BAR CONTAINER (Height: 36px, Edge-to-Edge) */}
+      {/* 1. TOPBAR CONTAINER (Height: 36px, Edge-to-Edge) */}
       {/* ==================================================================== */}
       <header className="fixed top-0 left-0 right-0 z-50 h-[36px] select-none transition-all duration-300">
         
         {/* Main 36px Top Bar Background with Glassmorphism */}
         <div 
-          className="absolute inset-0 h-[36px] border-b flex items-center justify-between px-3"
+          className="absolute inset-0 h-[36px] border-b flex items-center justify-between px-2 sm:px-3 overflow-hidden"
           style={{
-            background: "rgba(19, 15, 18, 0.65)",
+            background: "rgba(19, 15, 18, 0.75)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            borderColor: "rgba(65, 47, 59, 0.35)",
+            borderColor: "rgba(65, 47, 59, 0.4)",
           }}
         >
           {/* ================================================================ */}
           {/* LEFT MODULES: Workspaces (1-5) + Chat/Clipse Button + Launcher */}
           {/* ================================================================ */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 z-10">
             {/* Arch Logo / App Launcher trigger */}
             <button
               onClick={() => setAppLauncherOpen(true)}
@@ -161,7 +162,7 @@ export function Navbar() {
             </button>
 
             {/* Workspaces 1-5 Indicator matching Workspaces.qml */}
-            <div className="flex items-center gap-1.5 py-1">
+            <div className="flex items-center gap-1 sm:gap-1.5 py-1">
               {[1, 2, 3, 4, 5].map((ws) => {
                 const isFocused = activeWorkspace === ws;
                 return (
@@ -170,8 +171,8 @@ export function Navbar() {
                     onClick={() => handleWorkspaceClick(ws)}
                     className={`h-[7px] rounded-full transition-all duration-200 cursor-pointer ${
                       isFocused
-                        ? "w-[24px] bg-primary shadow-[0_0_10px_rgba(225,131,194,0.6)]"
-                        : "w-[7px] bg-white/35 hover:bg-white/70"
+                        ? "w-[18px] sm:w-[24px] bg-primary shadow-[0_0_10px_rgba(225,131,194,0.6)]"
+                        : "w-[6px] sm:w-[7px] bg-white/35 hover:bg-white/70"
                     }`}
                     title={`Workspace ${ws}: ${
                       ws === 1 ? "Desktop Simulation" :
@@ -201,21 +202,30 @@ export function Navbar() {
           {/* ================================================================ */}
           <div 
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="absolute left-1/2 -translate-x-1/2 font-mono font-bold text-[13px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors flex items-center gap-1.5"
+            className="hidden md:flex absolute left-1/2 -translate-x-1/2 font-mono font-bold text-xs sm:text-[13px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center gap-1.5 whitespace-nowrap select-none"
             title="Scroll to Top"
           >
             <span>{formattedTime}</span>
           </div>
 
+          {/* Compact Clock for Tablet / Intermediate viewports */}
+          <div 
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="hidden min-[540px]:flex md:hidden absolute left-1/2 -translate-x-1/2 font-mono font-bold text-[11px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center whitespace-nowrap select-none"
+            title="Scroll to Top"
+          >
+            <span>{shortTime}</span>
+          </div>
+
           {/* ================================================================ */}
           {/* RIGHT MODULES: Ledge, MiniPlayer, Tray Drawer, Status Cluster */}
           {/* ================================================================ */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 z-10">
             
             {/* Ledge Widget matching LedgeWidget.qml */}
             <button
               onClick={() => setLedgeOpen(!ledgeOpen)}
-              className={`flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs font-mono transition-colors ${
+              className={`hidden sm:flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs font-mono transition-colors ${
                 ledgeOpen ? "bg-primary/20 text-primary border border-primary/30" : "text-white/70 hover:text-primary hover:bg-white/5"
               }`}
               title="omarchy-ledge Pin Drawer"
@@ -225,7 +235,7 @@ export function Navbar() {
             </button>
 
             {/* Mini Player matching MiniPlayer.qml */}
-            <div className="hidden md:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] text-xs font-mono">
+            <div className="hidden lg:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] text-xs font-mono">
               <button 
                 onClick={() => setIsPlaying(!isPlaying)}
                 className="text-primary hover:scale-110 transition-transform"
@@ -233,13 +243,13 @@ export function Navbar() {
               >
                 {isPlaying ? <LuMusic className="w-3 h-3 animate-pulse" /> : <LuPlay className="w-3 h-3" />}
               </button>
-              <span className="text-[11px] text-white/80 truncate max-w-[130px]">
+              <span className="text-[11px] text-white/80 truncate max-w-[110px] xl:max-w-[140px]">
                 {isPlaying ? "YOASOBI - Idol" : "Paused"}
               </span>
             </div>
 
             {/* System Tray Drawer matching TrayDrawer.qml */}
-            <div className="hidden sm:flex items-center gap-2 text-white/60 text-xs px-1.5 border-r border-white/10">
+            <div className="hidden md:flex items-center gap-2 text-white/60 text-xs px-1.5 border-r border-white/10">
               <button
                 onClick={() => setTrayExpanded(!trayExpanded)}
                 className="hover:text-primary transition-colors"
@@ -248,7 +258,7 @@ export function Navbar() {
                 <LuSlidersHorizontal className="w-3 h-3" />
               </button>
               {trayExpanded && (
-                <div className="flex items-center gap-2 animate-fadeIn">
+                <div className="flex items-center gap-2">
                   <a href="https://t.me" target="_blank" rel="noreferrer" title="Telegram" className="hover:text-sky-400 transition-colors">
                     <SiTelegram className="w-3 h-3" />
                   </a>
@@ -266,12 +276,12 @@ export function Navbar() {
             </div>
 
             {/* Hardware Status Cluster matching StatusCluster.qml */}
-            <div className="flex items-center gap-2 text-xs font-mono text-on-surface">
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-mono text-on-surface">
               
               {/* Caffeine Sleep Inhibitor */}
               <button 
                 onClick={() => setCaffeineActive(!caffeineActive)}
-                className={`p-1 rounded transition-colors ${
+                className={`hidden min-[420px]:inline-block p-1 rounded transition-colors ${
                   caffeineActive ? "text-primary font-bold" : "text-white/60 hover:text-white"
                 }`}
                 title={`Caffeine: ${caffeineActive ? "Active" : "Inactive"}`}
@@ -282,23 +292,13 @@ export function Navbar() {
               {/* Notification Bell */}
               <button 
                 onClick={() => setDndActive(!dndActive)}
-                className={`p-1 rounded transition-colors ${
+                className={`hidden min-[480px]:inline-block p-1 rounded transition-colors ${
                   dndActive ? "text-amber-400" : "text-white/60 hover:text-white"
                 }`}
                 title={dndActive ? "Do Not Disturb Enabled" : "Notifications Active"}
               >
                 <LuBell className="w-3.5 h-3.5" />
               </button>
-
-              {/* Bluetooth */}
-              <span className="hidden sm:inline-block text-white/70" title="Bluetooth Connected">
-                <LuBluetooth className="w-3.5 h-3.5 text-primary" />
-              </span>
-
-              {/* Wi-Fi */}
-              <span className="hidden sm:inline-block text-white/70" title="Wi-Fi Connected (100%)">
-                <LuWifi className="w-3.5 h-3.5 text-primary" />
-              </span>
 
               {/* Volume */}
               <button 
@@ -307,11 +307,11 @@ export function Navbar() {
                 title="Audio Volume"
               >
                 {isMuted ? <LuVolumeX className="w-3.5 h-3.5 text-red-400" /> : <LuVolume2 className="w-3.5 h-3.5 text-primary" />}
-                <span className="text-[11px]">{isMuted ? "0%" : `${volume}%`}</span>
+                <span className="text-[10px] sm:text-[11px]">{isMuted ? "0%" : `${volume}%`}</span>
               </button>
 
               {/* Brightness */}
-              <span className="hidden md:flex items-center gap-1 text-white/80" title="Display Brightness">
+              <span className="hidden sm:flex items-center gap-1 text-white/80" title="Display Brightness">
                 <LuSun className="w-3.5 h-3.5 text-primary" />
                 <span className="text-[11px]">{brightness}%</span>
               </span>
@@ -319,7 +319,7 @@ export function Navbar() {
               {/* Battery */}
               <span className="flex items-center gap-1 text-white/80" title="Battery: 100% Charging">
                 <LuBatteryCharging className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[11px]">100%</span>
+                <span className="text-[10px] sm:text-[11px]">100%</span>
               </span>
 
               {/* Quick Settings / Control Center Toggle */}
@@ -352,12 +352,12 @@ export function Navbar() {
         >
           <path 
             d="M 0 0 L 12 0 A 12 12 0 0 0 0 12 Z" 
-            fill="rgba(19, 15, 18, 0.65)" 
+            fill="rgba(19, 15, 18, 0.75)" 
           />
           <path 
             d="M 12 0 A 12 12 0 0 0 0 12" 
             fill="none" 
-            stroke="rgba(65, 47, 59, 0.35)" 
+            stroke="rgba(65, 47, 59, 0.4)" 
             strokeWidth="1" 
           />
         </svg>
@@ -371,12 +371,12 @@ export function Navbar() {
         >
           <path 
             d="M 12 0 L 0 0 A 12 12 0 0 1 12 12 Z" 
-            fill="rgba(19, 15, 18, 0.65)" 
+            fill="rgba(19, 15, 18, 0.75)" 
           />
           <path 
             d="M 0 0 A 12 12 0 0 1 12 12" 
             fill="none" 
-            stroke="rgba(65, 47, 59, 0.35)" 
+            stroke="rgba(65, 47, 59, 0.4)" 
             strokeWidth="1" 
           />
         </svg>
@@ -390,7 +390,7 @@ export function Navbar() {
         {controlCenterOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
               onClick={() => setControlCenterOpen(false)}
             />
             <motion.div 
@@ -398,9 +398,9 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.96 }}
               transition={{ duration: 0.18 }}
-              className="fixed top-11 right-3 w-80 rounded-2xl p-4 z-50 border shadow-2xl"
+              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-3 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
               style={{
-                background: "rgba(31, 24, 29, 0.92)",
+                background: "rgba(31, 24, 29, 0.95)",
                 backdropFilter: "blur(24px)",
                 borderColor: "rgba(65, 47, 59, 0.6)",
               }}
@@ -485,7 +485,7 @@ export function Navbar() {
                     max="100" 
                     value={volume} 
                     onChange={(e) => setVolume(Number(e.target.value))}
-                    className="w-full accent-primary h-1 bg-white/20 rounded-lg cursor-pointer"
+                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer"
                   />
                 </div>
 
@@ -500,15 +500,15 @@ export function Navbar() {
                     max="100" 
                     value={brightness} 
                     onChange={(e) => setBrightness(Number(e.target.value))}
-                    className="w-full accent-primary h-1 bg-white/20 rounded-lg cursor-pointer"
+                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer"
                   />
                 </div>
               </div>
 
               {/* Power Actions */}
               <div className="flex items-center justify-between pt-2 border-t border-white/10 text-white/60">
-                <span className="text-[11px] font-mono">Arch Linux · Hyprland</span>
-                <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono truncate mr-2">Arch Linux · Hyprland</span>
+                <div className="flex items-center gap-2 shrink-0">
                   <button className="p-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" title="Lock Screen">
                     <LuMoon className="w-3.5 h-3.5" />
                   </button>
@@ -532,7 +532,7 @@ export function Navbar() {
         {clipseOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
               onClick={() => setClipseOpen(false)}
             />
             <motion.div 
@@ -540,9 +540,9 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.96 }}
               transition={{ duration: 0.18 }}
-              className="fixed top-11 left-3 w-84 rounded-2xl p-4 z-50 border shadow-2xl"
+              className="fixed top-11 left-2 right-2 sm:right-auto sm:left-3 w-auto sm:w-84 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
               style={{
-                background: "rgba(31, 24, 29, 0.94)",
+                background: "rgba(31, 24, 29, 0.96)",
                 backdropFilter: "blur(24px)",
                 borderColor: "rgba(65, 47, 59, 0.6)",
               }}
@@ -562,7 +562,7 @@ export function Navbar() {
 
               <div className="space-y-2">
                 {[
-                  { id: "c1", text: "curl -fsSL https://domain.com/install | sh", label: "Installer One-Liner" },
+                  { id: "c1", text: "curl -fsSL https://dotfiles-web-pi.vercel.app/install | sh", label: "Installer One-Liner" },
                   { id: "c2", text: "hyprctl dispatch togglefloating", label: "Hyprland Dispatch" },
                   { id: "c3", text: "~/Dotfiles/install.sh --core", label: "Dotfiles Core Command" },
                   { id: "c4", text: "python3 ~/.config/hypr/scripts/generate-theme.py", label: "Theme Generator" },
@@ -598,7 +598,7 @@ export function Navbar() {
         {ledgeOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
               onClick={() => setLedgeOpen(false)}
             />
             <motion.div 
@@ -606,9 +606,9 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.96 }}
               transition={{ duration: 0.18 }}
-              className="fixed top-11 right-20 w-80 rounded-2xl p-4 z-50 border shadow-2xl"
+              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-20 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
               style={{
-                background: "rgba(31, 24, 29, 0.94)",
+                background: "rgba(31, 24, 29, 0.96)",
                 backdropFilter: "blur(24px)",
                 borderColor: "rgba(65, 47, 59, 0.6)",
               }}
@@ -633,14 +633,14 @@ export function Navbar() {
                   { name: "install.sh", size: "14.6 KB", path: "~/Dotfiles/install.sh" },
                 ].map((file, i) => (
                   <div key={i} className="flex items-center justify-between p-2 rounded-xl bg-white/[0.04] border border-white/5">
-                    <div className="flex items-center gap-2">
-                      <LuPin className="w-3.5 h-3.5 text-primary" />
-                      <div>
-                        <div className="font-mono text-xs font-medium text-white">{file.name}</div>
-                        <div className="font-mono text-[10px] text-white/40">{file.path}</div>
+                    <div className="flex items-center gap-2 truncate mr-2">
+                      <LuPin className="w-3.5 h-3.5 text-primary shrink-0" />
+                      <div className="truncate">
+                        <div className="font-mono text-xs font-medium text-white truncate">{file.name}</div>
+                        <div className="font-mono text-[10px] text-white/40 truncate">{file.path}</div>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-white/50">{file.size}</span>
+                    <span className="text-[10px] font-mono text-white/50 shrink-0">{file.size}</span>
                   </div>
                 ))}
               </div>
@@ -654,15 +654,15 @@ export function Navbar() {
       {/* ==================================================================== */}
       <AnimatePresence>
         {appLauncherOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
             <motion.div 
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.92 }}
               transition={{ duration: 0.2 }}
-              className="w-full max-w-lg rounded-2xl p-6 border shadow-2xl relative"
+              className="w-full max-w-lg rounded-2xl p-4 sm:p-6 border shadow-2xl relative"
               style={{
-                background: "rgba(31, 24, 29, 0.95)",
+                background: "rgba(31, 24, 29, 0.96)",
                 borderColor: "rgba(225, 131, 194, 0.4)",
                 boxShadow: "0 0 35px -5px rgba(225, 131, 194, 0.25)",
               }}
@@ -676,34 +676,34 @@ export function Navbar() {
               </button>
 
               {/* Launcher Header & Input */}
-              <div className="flex items-center gap-3 pb-4 mb-4 border-b border-white/10">
-                <LuSearch className="w-5 h-5 text-primary" />
+              <div className="flex items-center gap-3 pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-white/10 pr-8">
+                <LuSearch className="w-5 h-5 text-primary shrink-0" />
                 <input 
                   type="text" 
                   placeholder="Search applications, keybindings, files..." 
-                  className="w-full bg-transparent text-sm font-mono text-white focus:outline-hidden placeholder:text-white/40"
+                  className="w-full bg-transparent text-xs sm:text-sm font-mono text-white focus:outline-hidden placeholder:text-white/40"
                   autoFocus
                 />
               </div>
 
               {/* Quick Launch App Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
                 {[
-                  { name: "Ghostty Terminal", cmd: "SUPER + RETURN", icon: LuTerminal },
-                  { name: "Theme Switcher", cmd: "SUPER + T", icon: LuSparkles },
-                  { name: "File Manager", cmd: "SUPER + E", icon: LuFolder },
-                  { name: "Brave Browser", cmd: "SUPER + B", icon: SiBrave },
-                  { name: "Control Center", cmd: "SUPER + C", icon: LuSlidersHorizontal },
-                  { name: "PiP Video Pin", cmd: "SUPER + P", icon: LuPin },
+                  { name: "Ghostty", cmd: "SUPER + RETURN", icon: LuTerminal },
+                  { name: "Themes", cmd: "SUPER + T", icon: LuSparkles },
+                  { name: "Files", cmd: "SUPER + E", icon: LuFolder },
+                  { name: "Brave", cmd: "SUPER + B", icon: SiBrave },
+                  { name: "Settings", cmd: "SUPER + C", icon: LuSlidersHorizontal },
+                  { name: "PiP Pin", cmd: "SUPER + P", icon: LuPin },
                 ].map((app, i) => (
                   <button 
                     key={i}
                     onClick={() => setAppLauncherOpen(false)}
-                    className="flex flex-col items-start p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group"
+                    className="flex flex-col items-start p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group"
                   >
-                    <app.icon className="w-4 h-4 text-primary mb-2 group-hover:scale-110 transition-transform" />
+                    <app.icon className="w-4 h-4 text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-semibold text-white">{app.name}</span>
-                    <span className="text-[10px] font-mono text-white/40">{app.cmd}</span>
+                    <span className="text-[10px] font-mono text-white/40 truncate w-full">{app.cmd}</span>
                   </button>
                 ))}
               </div>
