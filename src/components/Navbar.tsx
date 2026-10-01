@@ -245,16 +245,19 @@ export function Navbar() {
             </button>
 
             {/* Mini Player matching MiniPlayer.qml */}
-            <div className="hidden lg:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] text-xs font-mono">
+            <div className="hidden lg:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/5 text-xs font-mono">
               <button 
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="text-primary hover:scale-110 transition-transform"
-                title={isPlaying ? "Pause" : "Play"}
+                className="text-primary hover:scale-110 transition-transform cursor-pointer"
+                title={isPlaying ? `Now Playing: ${activeTheme.aura.nowPlaying} by ${activeTheme.aura.nowPlayingArtist}` : "Play"}
               >
                 {isPlaying ? <LuMusic className="w-3 h-3 animate-pulse" /> : <LuPlay className="w-3 h-3" />}
               </button>
-              <span className="text-[11px] text-white/80 truncate max-w-[110px] xl:max-w-[140px]">
-                {isPlaying ? "YOASOBI - Idol" : "Paused"}
+              <span 
+                className="text-[11px] text-white/85 truncate max-w-[130px] xl:max-w-[160px] font-medium"
+                title={`${activeTheme.aura.nowPlaying} · ${activeTheme.aura.nowPlayingArtist}`}
+              >
+                {isPlaying ? activeTheme.aura.nowPlaying : "Paused"}
               </span>
             </div>
 

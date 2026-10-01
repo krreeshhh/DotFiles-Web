@@ -51,7 +51,7 @@ const INSTALL_TABS: InstallTab[] = [
 ];
 
 export function Hero() {
-  const { toggleScratchpad } = useTheme();
+  const { activeTheme, toggleScratchpad } = useTheme();
   const [activeTab, setActiveTab] = useState<InstallTab>(INSTALL_TABS[0]);
   const [copied, setCopied] = useState(false);
 
@@ -91,7 +91,7 @@ export function Hero() {
         >
           <LuSparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary animate-pulse shrink-0" />
           <span className="text-[11px] sm:text-xs font-mono font-medium text-on-surface truncate">
-            DotFiles v1.0 Released · Host: <strong className="text-primary font-bold">ASUS TUF A15</strong> · Kernel: <strong className="text-primary font-bold">Linux LTS</strong>
+            DotFiles v1.0 · Persona: <strong className="text-primary font-bold">{activeTheme.name}</strong> ({activeTheme.aura.badgeText})
           </span>
         </motion.div>
 
@@ -100,13 +100,26 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-4 sm:mb-6 font-sans leading-tight"
+          className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-3 sm:mb-4 font-sans leading-tight"
         >
           Your Arch Linux Desktop, <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary animate-gradient">
             Perfected & Automated
           </span>
         </motion.h1>
+
+        {/* Persona Quote Banner */}
+        <motion.div
+          key={`quote-${activeTheme.id}`}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="max-w-2xl mx-auto mb-4"
+        >
+          <p className="text-xs sm:text-sm font-mono text-primary/90 italic tracking-wide">
+            &quot;{activeTheme.aura.quote}&quot;
+          </p>
+        </motion.div>
 
         {/* Subtitle */}
         <motion.p 
@@ -132,7 +145,7 @@ export function Hero() {
             <LuLayers className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Quickshell Shell
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
-            <LuMonitor className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Material You
+            <LuMonitor className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> {activeTheme.colors.accent_name}
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
             <LuTerminal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Ghostty (0.20 Opacity)
@@ -163,7 +176,7 @@ export function Hero() {
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80 border border-yellow-600/40" />
               <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80 border border-green-600/40" />
               <span className="ml-1 sm:ml-2 text-[11px] sm:text-xs font-mono text-on-surface-variant font-medium">
-                bash ~ /installer
+                {activeTheme.aura.terminalPromptUser}: ~/installer
               </span>
             </div>
 

@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { ThemeAtmosphere } from "@/components/ThemeAtmosphere";
 import { Hero } from "@/components/Hero";
 import { DesktopSimulation } from "@/components/DesktopSimulation";
 import { WallpaperScratchpad } from "@/components/WallpaperScratchpad";
@@ -10,6 +11,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-on-surface relative">
+      <ThemeAtmosphere />
       <Navbar />
       <Hero />
       <DesktopSimulation />

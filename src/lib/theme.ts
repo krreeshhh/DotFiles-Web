@@ -15,12 +15,25 @@ export interface ThemeColors {
   accent_name: string;
 }
 
+export interface ThemeAura {
+  themeName: string;
+  subtitle: string;
+  quote: string;
+  nowPlaying: string;
+  nowPlayingArtist: string;
+  badgeText: string;
+  terminalPromptUser: string;
+  ambientEffect: "sakura" | "cybergrid" | "embers" | "scanlines" | "celestial" | "aurora" | "rain" | "matrix" | "minimal";
+  accentGlow: string;
+}
+
 export interface WallpaperTheme {
   id: string;
   name: string;
   filename: string;
   tag: string;
   colors: ThemeColors;
+  aura: ThemeAura;
 }
 
 // 100% mathematically extracted using the system's generate-theme.py Material You algorithm
@@ -46,6 +59,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Blossom Pink",
     },
+    aura: {
+      themeName: "Blossom Bloom",
+      subtitle: "Demon Slayer · Kimetsu no Yaiba",
+      quote: "Humans are to be protected and saved. I will never hurt them.",
+      nowPlaying: "Kamado Nezuko no Uta",
+      nowPlayingArtist: "Go Shiina ft. Nami Nakagawa",
+      badgeText: "Demon Slayer · Blossom Hashira",
+      terminalPromptUser: "Krish@Nezuko",
+      ambientEffect: "sakura",
+      accentGlow: "rgba(225, 131, 194, 0.45)",
+    },
   },
   {
     id: "reze",
@@ -67,6 +91,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       outline_subtle: "#25252a",
       error: "#FF6B6B",
       accent_name: "Amber Flame",
+    },
+    aura: {
+      themeName: "Bomb Devil",
+      subtitle: "Chainsaw Man · Soviet Assassin",
+      quote: "Do you know how to swim, Denji?",
+      nowPlaying: "Jane Doe (Reze Theme)",
+      nowPlayingArtist: "Chainsaw Man OST",
+      badgeText: "Host Machine Default · Bomb Devil",
+      terminalPromptUser: "Krish@Reze",
+      ambientEffect: "embers",
+      accentGlow: "rgba(243, 161, 113, 0.45)",
     },
   },
   {
@@ -90,6 +125,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Sun God Cyan",
     },
+    aura: {
+      themeName: "Sun God Nika",
+      subtitle: "One Piece · Drums of Liberation",
+      quote: "This is my peak! As long as I am alive, the possibilities are limitless!",
+      nowPlaying: "Overtaken · Drums of Liberation",
+      nowPlayingArtist: "Kohei Tanaka",
+      badgeText: "Warrior of Liberation · Gear 5",
+      terminalPromptUser: "Krish@Nika",
+      ambientEffect: "celestial",
+      accentGlow: "rgba(113, 217, 243, 0.45)",
+    },
   },
   {
     id: "shinobu",
@@ -111,6 +157,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       outline_subtle: "#25252a",
       error: "#FF6B6B",
       accent_name: "Wisteria Indigo",
+    },
+    aura: {
+      themeName: "Insect Hashira",
+      subtitle: "Demon Slayer · Butterfly Dance",
+      quote: "I may be the only swordsman among the Hashira who cannot cut off a demon's head.",
+      nowPlaying: "Kochou Shinobu Theme",
+      nowPlayingArtist: "Yuki Kajiura",
+      badgeText: "Insect Hashira · Wisteria Bloom",
+      terminalPromptUser: "Krish@Shinobu",
+      ambientEffect: "aurora",
+      accentGlow: "rgba(180, 183, 237, 0.45)",
     },
   },
   {
@@ -134,6 +191,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Frost Blue",
     },
+    aura: {
+      themeName: "Frost Azure",
+      subtitle: "Glacial Serenity · Cyberspace",
+      quote: "Silence is the purest frequency in the matrix.",
+      nowPlaying: "Resonance",
+      nowPlayingArtist: "HOME",
+      badgeText: "Glacial Cyber · Deep Frost",
+      terminalPromptUser: "Krish@Azure",
+      ambientEffect: "rain",
+      accentGlow: "rgba(113, 202, 243, 0.45)",
+    },
   },
   {
     id: "makima",
@@ -155,6 +223,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       outline_subtle: "#25252a",
       error: "#FF6B6B",
       accent_name: "Velvet Ochre",
+    },
+    aura: {
+      themeName: "Control Devil",
+      subtitle: "Public Safety Devil Hunter Special Division 4",
+      quote: "All devils are born with a name. The more that name is feared, the more powerful the devil.",
+      nowPlaying: "Sweet Dreams (Are Made of This)",
+      nowPlayingArtist: "Eurythmics",
+      badgeText: "Control Devil · Public Safety",
+      terminalPromptUser: "Krish@Makima",
+      ambientEffect: "embers",
+      accentGlow: "rgba(243, 169, 113, 0.45)",
     },
   },
   {
@@ -178,6 +257,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Blade Rose",
     },
+    aura: {
+      themeName: "Blade Crimson",
+      subtitle: "Iaijutsu Master · Scarlet Edge",
+      quote: "A single draw cuts down shadow and steel alike.",
+      nowPlaying: "The Last Shuriken",
+      nowPlayingArtist: "Hiroyuki Sawano",
+      badgeText: "Blade Master · Scarlet Katana",
+      terminalPromptUser: "Krish@Katana",
+      ambientEffect: "matrix",
+      accentGlow: "rgba(245, 138, 140, 0.45)",
+    },
   },
   {
     id: "wall",
@@ -199,6 +289,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       outline_subtle: "#25252a",
       error: "#FF6B6B",
       accent_name: "Warm Aurum",
+    },
+    aura: {
+      themeName: "Golden Architecture",
+      subtitle: "Minimalist Geometry · Sunlit Ochre",
+      quote: "Structure, symmetry, and the quiet beauty of light.",
+      nowPlaying: "Experience",
+      nowPlayingArtist: "Ludovico Einaudi",
+      badgeText: "Minimal Aurum · Golden Ratio",
+      terminalPromptUser: "Krish@Architect",
+      ambientEffect: "minimal",
+      accentGlow: "rgba(242, 226, 176, 0.45)",
     },
   },
   {
@@ -222,6 +323,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Dusk Mauve",
     },
+    aura: {
+      themeName: "Neo Tokyo Synth",
+      subtitle: "Cyberpunk Nightscape · Shinjuku D-Bus",
+      quote: "Neon reflections across wet asphalt and high-voltage dreams.",
+      nowPlaying: "I Really Want to Stay At Your House",
+      nowPlayingArtist: "Rosa Walton",
+      badgeText: "Neo Tokyo · Cyberpunk Synthwave",
+      terminalPromptUser: "Krish@NeoTokyo",
+      ambientEffect: "cybergrid",
+      accentGlow: "rgba(212, 144, 177, 0.45)",
+    },
   },
   {
     id: "wings",
@@ -244,6 +356,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       error: "#FF6B6B",
       accent_name: "Coral Night",
     },
+    aura: {
+      themeName: "Abyssal Seraph",
+      subtitle: "Dark Angel · Crimson Wings",
+      quote: "From the abyss rises the darkest wings of twilight.",
+      nowPlaying: "Midnight City",
+      nowPlayingArtist: "M83",
+      badgeText: "Abyssal Seraph · Midnight Coral",
+      terminalPromptUser: "Krish@Seraph",
+      ambientEffect: "celestial",
+      accentGlow: "rgba(236, 120, 131, 0.45)",
+    },
   },
   {
     id: "lain",
@@ -265,6 +388,17 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
       outline_subtle: "#25252a",
       error: "#FF6B6B",
       accent_name: "Wired Rose",
+    },
+    aura: {
+      themeName: "Wired Entity",
+      subtitle: "Serial Experiments Lain · Copland OS",
+      quote: "No matter where you go, everyone is always connected.",
+      nowPlaying: "Duvet",
+      nowPlayingArtist: "Bôa",
+      badgeText: "The Wired · Copland OS Enterprise",
+      terminalPromptUser: "Krish@Wired",
+      ambientEffect: "scanlines",
+      accentGlow: "rgba(226, 150, 179, 0.45)",
     },
   },
 ];

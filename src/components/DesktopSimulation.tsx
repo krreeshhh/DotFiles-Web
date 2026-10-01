@@ -229,7 +229,7 @@ export function DesktopSimulation() {
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
                 border: "1px solid var(--color-primary)",
-                boxShadow: "0 0 20px -3px rgba(225, 131, 194, 0.3)"
+                boxShadow: `0 0 24px -2px ${activeTheme.colors.primary}40`
               }}
             >
               {/* Borderless Terminal Header Bar with Command Tabs */}
@@ -237,7 +237,7 @@ export function DesktopSimulation() {
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs text-primary font-bold">●</span>
                   <span className="font-mono text-[11px] sm:text-xs text-on-surface-variant font-medium truncate">
-                    Krish@Reze: ~/Dotfiles
+                    {activeTheme.aura.terminalPromptUser}: ~/Dotfiles
                   </span>
                 </div>
 
@@ -289,7 +289,7 @@ export function DesktopSimulation() {
                       <p><span className="text-primary font-bold">WM:</span> Hyprland 0.56.2 (Lua Native)</p>
                       <p><span className="text-primary font-bold">Shell:</span> Quickshell (Modular QML)</p>
                       <p><span className="text-primary font-bold">Terminal:</span> Ghostty (0.20 Opacity)</p>
-                      <p><span className="text-primary font-bold">Theme:</span> Material You ({activeTheme.colors.accent_name})</p>
+                      <p><span className="text-primary font-bold">Theme:</span> Material You ({activeTheme.name} · {activeTheme.aura.badgeText})</p>
                       <p><span className="text-primary font-bold">Icons:</span> WhiteSur-dark</p>
                       <p><span className="text-primary font-bold">Cursor:</span> Bibata-Modern-Ice (24px)</p>
                       <p><span className="text-primary font-bold">CPU:</span> AMD Ryzen 7 7435HS @ 4.55 GHz</p>
@@ -298,14 +298,14 @@ export function DesktopSimulation() {
                       <p><span className="text-primary font-bold">Display:</span> 1920x1080 @ 144Hz</p>
                     </div>
 
-                    <div className="pt-3 flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded bg-[#e183c2]" />
-                      <span className="w-3 h-3 rounded bg-[#d8a5ca]" />
-                      <span className="w-3 h-3 rounded bg-[#401b34]" />
-                      <span className="w-3 h-3 rounded bg-[#1f181d]" />
-                      <span className="w-3 h-3 rounded bg-[#412f3b]" />
-                      <span className="w-3 h-3 rounded bg-[#54d6eb]" />
-                      <span className="w-3 h-3 rounded bg-[#71d9f3]" />
+                    <div className="pt-3 flex items-center gap-1.5 flex-wrap">
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.primary }} title={`Primary: ${activeTheme.colors.primary}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.secondary }} title={`Secondary: ${activeTheme.colors.secondary}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.primary_container }} title={`Primary Container: ${activeTheme.colors.primary_container}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.surface }} title={`Surface: ${activeTheme.colors.surface}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.surface_variant }} title={`Surface Variant: ${activeTheme.colors.surface_variant}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.outline }} title={`Outline: ${activeTheme.colors.outline}`} />
+                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.on_surface }} title={`On Surface: ${activeTheme.colors.on_surface}`} />
                     </div>
 
                     <p className="pt-2 text-emerald-400">$ echo &quot;Ready for deployment on fresh Arch install.&quot;</p>
@@ -319,7 +319,7 @@ export function DesktopSimulation() {
                     <p className="text-white/60 pt-2">$ hyprctl monitors</p>
                     <p>Monitor eDP-1 (ID 0): 1920x1080@144.00Hz at 0x0</p>
                     <p className="text-primary font-semibold">active workspace: {activeWorkspace} (eDP-1)</p>
-                    <p>focused window: class: com.mitchellh.ghostty, title: Krish@Reze: ~/Dotfiles</p>
+                    <p>focused window: class: com.mitchellh.ghostty, title: {activeTheme.aura.terminalPromptUser}: ~/Dotfiles</p>
                   </div>
                 )}
 

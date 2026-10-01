@@ -220,10 +220,10 @@ export function WallpaperScratchpad() {
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
                       zIndex: zIndex,
-                      borderColor: isCenter ? "var(--color-primary)" : "rgba(65, 47, 59, 0.40)",
+                      borderColor: isCenter ? theme.colors.primary : "rgba(65, 47, 59, 0.40)",
                       borderWidth: isCenter ? "2.8px" : "1px",
                       boxShadow: isCenter 
-                        ? "0 0 35px -5px rgba(225, 131, 194, 0.45), 0 15px 35px rgba(0,0,0,0.6)" 
+                        ? `0 0 35px -5px ${theme.colors.primary}75, 0 15px 35px rgba(0,0,0,0.6)` 
                         : "0 10px 30px rgba(0,0,0,0.5)",
                       transition: "border-color 0.4s ease, box-shadow 0.4s ease",
                     }}
@@ -255,21 +255,40 @@ export function WallpaperScratchpad() {
             </div>
 
             {/* ================================================================ */}
-            {/* WALLPAPER TITLE (JetBrainsMono Nerd Font Bold 16) */}
+            {/* WALLPAPER TITLE & PERSONA AURA (JetBrainsMono Nerd Font) */}
             {/* ================================================================ */}
-            <div className="text-center mt-6 sm:mt-9 mb-4 sm:mb-6 min-h-[36px] flex items-center justify-center">
+            <div className="text-center mt-4 sm:mt-7 mb-3 sm:mb-5 min-h-[64px] flex flex-col items-center justify-center px-4">
               <AnimatePresence mode="wait">
-                <motion.h3
+                <motion.div
                   key={currentTheme.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-mono font-bold text-xl sm:text-2xl text-white tracking-wide"
-                  style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-center gap-1.5"
                 >
-                  {currentTheme.name}
-                </motion.h3>
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    <h3
+                      className="font-mono font-bold text-lg sm:text-2xl text-white tracking-wide"
+                      style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)" }}
+                    >
+                      {currentTheme.name}
+                    </h3>
+                    <span 
+                      className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-semibold border"
+                      style={{
+                        backgroundColor: `${currentTheme.colors.primary}25`,
+                        borderColor: `${currentTheme.colors.primary}60`,
+                        color: currentTheme.colors.primary
+                      }}
+                    >
+                      {currentTheme.aura.badgeText}
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs font-mono text-white/70 max-w-xl truncate">
+                    {currentTheme.aura.subtitle} · &quot;{currentTheme.aura.quote}&quot;
+                  </p>
+                </motion.div>
               </AnimatePresence>
             </div>
 
