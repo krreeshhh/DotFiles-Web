@@ -91,7 +91,7 @@ export function Hero() {
         >
           <LuSparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary animate-pulse shrink-0" />
           <span className="text-[11px] sm:text-xs font-mono font-medium text-on-surface truncate">
-            DotFiles v1.0 Released · Architecture: <strong className="text-primary font-bold">Reze</strong>
+            DotFiles v1.0 Released · Host: <strong className="text-primary font-bold">ASUS TUF A15</strong> · Kernel: <strong className="text-primary font-bold">Linux LTS</strong>
           </span>
         </motion.div>
 
@@ -126,7 +126,7 @@ export function Hero() {
           className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-4xl mx-auto mb-8 sm:mb-12"
         >
           <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
-            <LuCpu className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Hyprland Lua API
+            <LuCpu className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Hyprland 0.56 Lua API
           </span>
           <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
             <LuLayers className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Quickshell Shell

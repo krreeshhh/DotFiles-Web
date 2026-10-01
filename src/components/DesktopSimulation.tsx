@@ -283,17 +283,19 @@ export function DesktopSimulation() {
                     <p className="text-white/60">$ fastfetch --pipe</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pt-1">
                       <p><span className="text-primary font-bold">OS:</span> Arch Linux x86_64</p>
-                      <p><span className="text-primary font-bold">Host:</span> Victus by HP Gaming Laptop</p>
-                      <p><span className="text-primary font-bold">Kernel:</span> Linux 6.12.74-1-lts</p>
-                      <p><span className="text-primary font-bold">Uptime:</span> 3 hours, 42 mins</p>
-                      <p><span className="text-primary font-bold">WM:</span> Hyprland 0.54.1 (Lua Native)</p>
+                      <p><span className="text-primary font-bold">Host:</span> ASUS TUF Gaming A15 FA506NFR</p>
+                      <p><span className="text-primary font-bold">Kernel:</span> Linux 6.18.54-1-lts</p>
+                      <p><span className="text-primary font-bold">Uptime:</span> 4 hours, 25 mins</p>
+                      <p><span className="text-primary font-bold">WM:</span> Hyprland 0.56.2 (Lua Native)</p>
                       <p><span className="text-primary font-bold">Shell:</span> Quickshell (Modular QML)</p>
                       <p><span className="text-primary font-bold">Terminal:</span> Ghostty (0.20 Opacity)</p>
                       <p><span className="text-primary font-bold">Theme:</span> Material You ({activeTheme.colors.accent_name})</p>
                       <p><span className="text-primary font-bold">Icons:</span> WhiteSur-dark</p>
-                      <p><span className="text-primary font-bold">Cursor:</span> Bibata-Modern-Ice</p>
-                      <p><span className="text-primary font-bold">GPU:</span> NVIDIA RTX 2050 Mobile</p>
-                      <p><span className="text-primary font-bold">Memory:</span> 3.82 GiB / 15.34 GiB</p>
+                      <p><span className="text-primary font-bold">Cursor:</span> Bibata-Modern-Ice (24px)</p>
+                      <p><span className="text-primary font-bold">CPU:</span> AMD Ryzen 7 7435HS @ 4.55 GHz</p>
+                      <p><span className="text-primary font-bold">GPU:</span> NVIDIA GeForce RTX 2050 [Discrete]</p>
+                      <p><span className="text-primary font-bold">Memory:</span> 7.64 GiB / 15.43 GiB (50%)</p>
+                      <p><span className="text-primary font-bold">Display:</span> 1920x1080 @ 144Hz</p>
                     </div>
 
                     <div className="pt-3 flex items-center gap-1.5">
@@ -313,10 +315,10 @@ export function DesktopSimulation() {
                 {activeTerminalTab === "hyprctl" && (
                   <div className="space-y-1.5">
                     <p className="text-white/60">$ hyprctl version</p>
-                    <p className="text-emerald-400">Hyprland 0.54.1 built from branch main at commit 461a297</p>
+                    <p className="text-emerald-400">Hyprland 0.56.2 built from branch v0.56.2 at commit efb50993</p>
                     <p className="text-white/60 pt-2">$ hyprctl monitors</p>
                     <p>Monitor eDP-1 (ID 0): 1920x1080@144.00Hz at 0x0</p>
-                    <p className="text-primary font-semibold">active workspace: {activeWorkspace} (DP-1)</p>
+                    <p className="text-primary font-semibold">active workspace: {activeWorkspace} (eDP-1)</p>
                     <p>focused window: class: com.mitchellh.ghostty, title: Krish@Reze: ~/Dotfiles</p>
                   </div>
                 )}
