@@ -31,7 +31,9 @@ body {
   color: var(--color-on-surface);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -58,18 +60,18 @@ body {
   background: var(--color-primary);
 }
 
-/* Glassmorphic Components */
+/* Glassmorphic Components with optimized blur radius */
 .glass-panel {
-  background: rgba(31, 24, 29, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(31, 24, 29, 0.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-bar {
-  background: rgba(19, 15, 18, 0.60);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(19, 15, 18, 0.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -80,4 +82,11 @@ body {
 
 .glow-pill {
   box-shadow: 0 0 15px -3px rgba(225, 131, 194, 0.35);
+}
+
+/* GPU acceleration helper */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }

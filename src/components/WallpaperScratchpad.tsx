@@ -172,7 +172,7 @@ export function WallpaperScratchpad() {
                 if (modularDist < -count / 2) modularDist += count;
                 
                 const absDist = Math.abs(modularDist);
-                if (absDist > 4.2) return null; // Render cards within visible range
+                if (absDist > 2.8) return null; // Render visible cards within active viewport
 
                 const isCenter = absDist === 0;
                 const sign = modularDist >= 0 ? 1 : -1;
@@ -182,12 +182,11 @@ export function WallpaperScratchpad() {
                 const zIndex = 30 - Math.round(absDist * 8);
 
                 // Slot step spacing from carousel-picker.py
-                // slot_step_near = card_w * 0.45, slot_step_far = card_w * 0.25
                 const xOffset = sign * (absDist <= 1.0 ? absDist * 200 : 200 + (absDist - 1.0) * 110);
                 const rotateY = sign * -22 * Math.min(1.2, absDist);
-                const cardAlpha = Math.max(0.15, 1.0 - absDist * 0.22);
+                const cardAlpha = Math.max(0.2, 1.0 - absDist * 0.25);
                 
-                // Dimming overlay on background cards (dark_alpha = min(0.70, dist * 0.22 + 0.12))
+                // Dimming overlay on background cards
                 const darkAlpha = Math.min(0.70, absDist * 0.22 + 0.12);
 
                 return (
@@ -204,14 +203,13 @@ export function WallpaperScratchpad() {
                       x: xOffset,
                       scale: scale,
                       rotateY: rotateY,
-                      zIndex: zIndex,
                       opacity: cardAlpha,
                     }}
                     transition={{
-                      duration: 0.38,
-                      ease: [0.16, 1, 0.3, 1],
+                      duration: 0.28,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
-                    className={`absolute cursor-pointer rounded-2xl overflow-hidden transform-gpu will-change-transform ${
+                    className={`absolute cursor-pointer rounded-2xl overflow-hidden transform-gpu gpu-layer ${
                       isCenter 
                         ? "shadow-2xl" 
                         : "hover:scale-[1.02] shadow-xl"
@@ -221,29 +219,29 @@ export function WallpaperScratchpad() {
                       aspectRatio: "16/10",
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
+                      zIndex: zIndex,
                       borderColor: isCenter ? "var(--color-primary)" : "rgba(65, 47, 59, 0.40)",
                       borderWidth: isCenter ? "2.8px" : "1px",
                       boxShadow: isCenter 
                         ? "0 0 35px -5px rgba(225, 131, 194, 0.45), 0 15px 35px rgba(0,0,0,0.6)" 
                         : "0 10px 30px rgba(0,0,0,0.5)",
-                      transition: "border-color 0.3s ease, box-shadow 0.3s ease",
                     }}
                   >
                     {/* Wallpaper Surface */}
-                    <div className="w-full h-full relative overflow-hidden">
+                    <div className="w-full h-full relative overflow-hidden pointer-events-none">
                       <Image
                         src={`/wallpapers/${encodeURIComponent(theme.filename)}`}
                         alt={theme.name}
                         fill
                         loading={isCenter ? "eager" : "lazy"}
                         decoding="async"
-                        sizes="(max-width: 640px) 80vw, 640px"
+                        sizes="(max-width: 640px) 300px, 520px"
                         className="object-cover object-center pointer-events-none"
                       />
                       {/* Dimming overlay on background cards */}
                       {!isCenter && (
                         <div 
-                          className="absolute inset-0 transition-opacity duration-300 pointer-events-none"
+                          className="absolute inset-0 transition-opacity duration-200 pointer-events-none"
                           style={{ 
                             backgroundColor: `rgba(10, 8, 9, ${darkAlpha})`,
                           }} 

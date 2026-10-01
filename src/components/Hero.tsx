@@ -77,8 +77,8 @@ export function Hero() {
   return (
     <section className="relative pt-20 sm:pt-28 pb-12 sm:pb-20 overflow-hidden">
       {/* Ambient background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[350px] bg-primary/20 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none -z-10 animate-pulse-slow" />
-      <div className="absolute top-1/3 right-4 sm:right-10 w-[200px] sm:w-[350px] h-[200px] sm:h-[350px] bg-secondary/15 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[220px] sm:h-[350px] bg-primary/15 rounded-full blur-[80px] pointer-events-none -z-10 gpu-layer" />
+      <div className="absolute top-1/3 right-4 sm:right-10 w-[200px] sm:w-[350px] h-[200px] sm:h-[350px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none -z-10 gpu-layer" />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 text-center">
         

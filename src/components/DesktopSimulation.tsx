@@ -78,15 +78,15 @@ export function DesktopSimulation() {
         {/* ================================================================ */}
         <div className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] rounded-2xl overflow-hidden border border-outline/70 shadow-2xl flex flex-col justify-between select-none bg-background">
           
-          {/* Smooth Wallpaper Crossfade & Scale Transition */}
-          <AnimatePresence initial={false}>
+          {/* Smooth Hardware-Accelerated Wallpaper Crossfade */}
+          <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={activeTheme.id}
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 will-change-transform transform-gpu pointer-events-none z-0 overflow-hidden"
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute inset-0 transform-gpu pointer-events-none z-0 overflow-hidden"
             >
               <Image
                 src={`/wallpapers/${encodeURIComponent(activeTheme.filename)}`}
