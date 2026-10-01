@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from "react";
 import { WALLPAPER_THEMES, WallpaperTheme } from "@/lib/theme";
 
 interface ThemeContextType {
@@ -13,42 +13,53 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [activeTheme, setActiveTheme] = useState<WallpaperTheme>(WALLPAPER_THEMES[0]);
+  const rafRef = useRef<number | null>(null);
 
-  const applyColors = (theme: WallpaperTheme) => {
+  const applyColors = useCallback((theme: WallpaperTheme) => {
     if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    const { colors } = theme;
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
+    rafRef.current = requestAnimationFrame(() => {
+      const root = document.documentElement;
+      const { colors } = theme;
 
-    root.style.setProperty("--color-primary", colors.primary);
-    root.style.setProperty("--color-on-primary", colors.on_primary);
-    root.style.setProperty("--color-primary-container", colors.primary_container);
-    root.style.setProperty("--color-secondary", colors.secondary);
-    root.style.setProperty("--color-background", colors.background);
-    root.style.setProperty("--color-surface", colors.surface);
-    root.style.setProperty("--color-surface-variant", colors.surface_variant);
-    root.style.setProperty("--color-surface-selected", colors.surface_selected);
-    root.style.setProperty("--color-on-surface", colors.on_surface);
-    root.style.setProperty("--color-on-surface-variant", colors.on_surface_variant);
-    root.style.setProperty("--color-outline", colors.outline);
-    root.style.setProperty("--color-outline-subtle", colors.outline_subtle);
-    root.style.setProperty("--color-error", colors.error);
-  };
+      root.style.setProperty("--color-primary", colors.primary);
+      root.style.setProperty("--color-on-primary", colors.on_primary);
+      root.style.setProperty("--color-primary-container", colors.primary_container);
+      root.style.setProperty("--color-secondary", colors.secondary);
+      root.style.setProperty("--color-background", colors.background);
+      root.style.setProperty("--color-surface", colors.surface);
+      root.style.setProperty("--color-surface-variant", colors.surface_variant);
+      root.style.setProperty("--color-surface-selected", colors.surface_selected);
+      root.style.setProperty("--color-on-surface", colors.on_surface);
+      root.style.setProperty("--color-on-surface-variant", colors.on_surface_variant);
+      root.style.setProperty("--color-outline", colors.outline);
+      root.style.setProperty("--color-outline-subtle", colors.outline_subtle);
+      root.style.setProperty("--color-error", colors.error);
+    });
+  }, []);
 
-  const setTheme = (theme: WallpaperTheme) => {
+  const setTheme = useCallback((theme: WallpaperTheme) => {
     setActiveTheme(theme);
     applyColors(theme);
-  };
+  }, [applyColors]);
 
-  const setThemeById = (id: string) => {
+  const setThemeById = useCallback((id: string) => {
     const found = WALLPAPER_THEMES.find((t) => t.id === id);
     if (found) {
       setTheme(found);
     }
-  };
+  }, [setTheme]);
 
   useEffect(() => {
     applyColors(activeTheme);
-  }, [activeTheme]);
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [activeTheme, applyColors]);
 
   return (
     <ThemeContext.Provider value={{ activeTheme, setTheme, setThemeById }}>

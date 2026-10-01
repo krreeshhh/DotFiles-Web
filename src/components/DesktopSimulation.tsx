@@ -75,14 +75,25 @@ export function DesktopSimulation() {
         {/* ================================================================ */}
         {/* DESKTOP CANVAS CONTAINER */}
         {/* ================================================================ */}
-        <div 
-          className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] rounded-2xl overflow-hidden border border-outline/70 shadow-2xl bg-cover bg-center flex flex-col justify-between transition-all duration-700 select-none"
-          style={{ 
-            backgroundImage: `url('/wallpapers/${encodeURIComponent(activeTheme.filename)}')` 
-          }}
-        >
+        <div className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] rounded-2xl overflow-hidden border border-outline/70 shadow-2xl flex flex-col justify-between select-none bg-background">
+          
+          {/* Smooth Wallpaper Crossfade & Scale Transition */}
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={activeTheme.id}
+              initial={{ opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 bg-cover bg-center will-change-transform transform-gpu pointer-events-none z-0"
+              style={{ 
+                backgroundImage: `url('/wallpapers/${encodeURIComponent(activeTheme.filename)}')` 
+              }}
+            />
+          </AnimatePresence>
+
           {/* Subtle wallpaper darkening for depth */}
-          <div className="absolute inset-0 bg-background/25 backdrop-blur-[1px] pointer-events-none" />
+          <div className="absolute inset-0 bg-background/25 backdrop-blur-[1px] pointer-events-none z-10" />
 
           {/* ================================================================ */}
           {/* REAL QUICKSHELL EDGE-TO-EDGE BAR (Height: 36px) */}

@@ -28,7 +28,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "nezuko",
     name: "Nezuko Kamado",
-    filename: "Nezuko Kamado.png",
+    filename: "Nezuko Kamado.webp",
     tag: "Blossom Bloom",
     colors: {
       primary: "#e183c2",
@@ -50,7 +50,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "reze",
     name: "Reze",
-    filename: "Reze.png",
+    filename: "Reze.webp",
     tag: "Host Machine Default",
     colors: {
       primary: "#f3a171",
@@ -72,7 +72,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "luffy",
     name: "Gear5 Luffy",
-    filename: "Gear5 Luffy.png",
+    filename: "Gear5 Luffy.webp",
     tag: "Electric Nika",
     colors: {
       primary: "#71d9f3",
@@ -94,7 +94,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "shinobu",
     name: "Shinobu Kochō",
-    filename: "Shinobu Kochō v4.0.png",
+    filename: "Shinobu Kochō v4.0.webp",
     tag: "Wisteria Mist",
     colors: {
       primary: "#b4b7ed",
@@ -116,7 +116,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "bluegirl",
     name: "Blue Girl",
-    filename: "Blue Girl.png",
+    filename: "Blue Girl.webp",
     tag: "Frost Azure",
     colors: {
       primary: "#71caf3",
@@ -138,7 +138,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "makima",
     name: "Makima",
-    filename: "Makima.png",
+    filename: "Makima.webp",
     tag: "Control Velvet",
     colors: {
       primary: "#f3a971",
@@ -160,7 +160,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "sword",
     name: "Sword Silver Hair",
-    filename: "Sword Silver Hair.png",
+    filename: "Sword Silver Hair.webp",
     tag: "Katana Crimson",
     colors: {
       primary: "#f58a8c",
@@ -182,7 +182,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "wall",
     name: "Wall Gold",
-    filename: "Wall.png",
+    filename: "Wall.webp",
     tag: "Golden Minimal",
     colors: {
       primary: "#f2e2b0",
@@ -204,7 +204,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "neon",
     name: "Japanese Neon",
-    filename: "Japanese Neon.png",
+    filename: "Japanese Neon.webp",
     tag: "Tokyo Dusk",
     colors: {
       primary: "#d490b1",
@@ -226,7 +226,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "wings",
     name: "Wings Dark",
-    filename: "Wings Dark.png",
+    filename: "Wings Dark.webp",
     tag: "Abyssal Coral",
     colors: {
       primary: "#ec7883",
@@ -248,7 +248,7 @@ export const WALLPAPER_THEMES: WallpaperTheme[] = [
   {
     id: "lain",
     name: "Lain",
-    filename: "Lain.png",
+    filename: "Lain.webp",
     tag: "Wired Phosphor",
     colors: {
       primary: "#e296b3",
