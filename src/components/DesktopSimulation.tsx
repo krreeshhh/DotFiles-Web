@@ -27,17 +27,11 @@ import {
   SiBrave 
 } from "react-icons/si";
 
-export function DesktopSimulation() {
-  const { activeTheme } = useTheme();
-  const [activeWorkspace, setActiveWorkspace] = useState(1);
-  const [controlCenterOpen, setControlCenterOpen] = useState(false);
-  const [launcherOpen, setLauncherOpen] = useState(false);
-  const [activeTerminalTab, setActiveTerminalTab] = useState<"fastfetch" | "hyprctl" | "verify">("fastfetch");
-  const [brightness, setBrightness] = useState(100);
-  const [volume, setVolume] = useState(60);
-  const [caffeineActive, setCaffeineActive] = useState(false);
-  const [formattedTime, setFormattedTime] = useState("09:08 PM  Thu 01");
-  const [shortTime, setShortTime] = useState("09:08 PM");
+function SimulationClock() {
+  const [time, setTime] = useState({
+    formatted: "09:08 PM  Thu 01",
+    short: "09:08 PM"
+  });
 
   useEffect(() => {
     const updateTime = () => {
@@ -48,13 +42,37 @@ export function DesktopSimulation() {
       const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const dayName = days[now.getDay()];
       const dayNum = String(now.getDate()).padStart(2, '0');
-      setFormattedTime(`${hours}:${minutes} ${ampm}  ${dayName} ${dayNum}`);
-      setShortTime(`${hours}:${minutes} ${ampm}`);
+      setTime({
+        formatted: `${hours}:${minutes} ${ampm}  ${dayName} ${dayNum}`,
+        short: `${hours}:${minutes} ${ampm}`
+      });
     };
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  return (
+    <>
+      <div className="hidden sm:block font-mono font-bold text-xs text-on-surface tracking-wider">
+        <span>{time.formatted}</span>
+      </div>
+      <div className="sm:hidden font-mono font-bold text-[10px] text-on-surface tracking-wider">
+        <span>{time.short}</span>
+      </div>
+    </>
+  );
+}
+
+export function DesktopSimulation() {
+  const { activeTheme } = useTheme();
+  const [activeWorkspace, setActiveWorkspace] = useState(1);
+  const [controlCenterOpen, setControlCenterOpen] = useState(false);
+  const [launcherOpen, setLauncherOpen] = useState(false);
+  const [activeTerminalTab, setActiveTerminalTab] = useState<"fastfetch" | "hyprctl" | "verify">("fastfetch");
+  const [brightness, setBrightness] = useState(100);
+  const [volume, setVolume] = useState(60);
+  const [caffeineActive, setCaffeineActive] = useState(false);
 
   return (
     <section id="preview" className="py-12 sm:py-20 relative">
@@ -76,7 +94,10 @@ export function DesktopSimulation() {
         {/* ================================================================ */}
         {/* DESKTOP CANVAS CONTAINER */}
         {/* ================================================================ */}
-        <div className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] rounded-2xl overflow-hidden border border-outline/70 shadow-2xl flex flex-col justify-between select-none bg-background">
+        <div 
+          className="relative w-full h-[520px] sm:h-[600px] lg:h-[660px] rounded-2xl overflow-hidden border border-outline/70 shadow-2xl flex flex-col justify-between select-none bg-background gpu-layer"
+          style={{ isolation: "isolate" }}
+        >
           
           {/* Smooth Hardware-Accelerated Wallpaper Crossfade */}
           <AnimatePresence initial={false} mode="sync">
@@ -99,19 +120,20 @@ export function DesktopSimulation() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Subtle wallpaper darkening for depth */}
-          <div className="absolute inset-0 bg-background/25 backdrop-blur-[1px] pointer-events-none z-10" />
+          {/* Subtle wallpaper darkening without blur filter */}
+          <div className="absolute inset-0 bg-black/30 pointer-events-none z-10" />
 
           {/* ================================================================ */}
           {/* REAL QUICKSHELL EDGE-TO-EDGE BAR (Height: 36px) */}
           {/* ================================================================ */}
           <div className="relative z-30 w-full">
             <div 
-              className="w-full h-9 px-2 sm:px-4 flex items-center justify-between border-b transition-all"
+              className="w-full h-9 px-2 sm:px-4 flex items-center justify-between border-b transition-colors"
               style={{
-                background: "rgba(19, 15, 18, 0.65)",
-                backdropFilter: "blur(18px)",
-                borderColor: "rgba(255, 255, 255, 0.05)"
+                background: "rgba(19, 15, 18, 0.82)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                borderColor: "rgba(255, 255, 255, 0.06)"
               }}
             >
               
@@ -146,13 +168,8 @@ export function DesktopSimulation() {
                 </button>
               </div>
 
-              {/* CENTER: Exact Quickshell Clock.qml */}
-              <div className="hidden sm:block font-mono font-bold text-xs text-on-surface tracking-wider">
-                <span>{formattedTime}</span>
-              </div>
-              <div className="sm:hidden font-mono font-bold text-[10px] text-on-surface tracking-wider">
-                <span>{shortTime}</span>
-              </div>
+              {/* CENTER: Exact Quickshell Clock.qml (Isolated from parent re-renders) */}
+              <SimulationClock />
 
               {/* RIGHT: Tray Drawer & Status Cluster */}
               <div className="flex items-center gap-1.5 sm:gap-3">
@@ -206,11 +223,11 @@ export function DesktopSimulation() {
               initial={{ scale: 0.98, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.3 }}
-              className="w-full h-full rounded-xl overflow-hidden flex flex-col text-left transition-all duration-300"
+              className="w-full h-full rounded-xl overflow-hidden flex flex-col text-left transition-colors duration-300 gpu-layer"
               style={{ 
-                background: "rgba(19, 15, 18, 0.35)",
-                backdropFilter: "blur(24px)",
-                WebkitBackdropFilter: "blur(24px)",
+                background: "rgba(19, 15, 18, 0.82)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
                 border: "1px solid var(--color-primary)",
                 boxShadow: "0 0 20px -3px rgba(225, 131, 194, 0.3)"
               }}

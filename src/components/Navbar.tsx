@@ -38,13 +38,57 @@ import {
   SiArchlinux 
 } from "react-icons/si";
 
+function NavbarClock() {
+  const [time, setTime] = useState({
+    formatted: "09:20 PM  Thu 01",
+    short: "09:20 PM"
+  });
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours() % 12 || 12).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const ampm = now.getHours() >= 12 ? "PM" : "AM";
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const dayName = days[now.getDay()];
+      const dayNum = String(now.getDate()).padStart(2, "0");
+      setTime({
+        formatted: `${hours}:${minutes} ${ampm}  ${dayName} ${dayNum}`,
+        short: `${hours}:${minutes} ${ampm}`
+      });
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <div 
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="hidden md:flex absolute left-1/2 -translate-x-1/2 font-mono font-bold text-xs sm:text-[13px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center gap-1.5 whitespace-nowrap select-none"
+        title="Scroll to Top"
+      >
+        <span>{time.formatted}</span>
+      </div>
+
+      <div 
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="hidden min-[540px]:flex md:hidden absolute left-1/2 -translate-x-1/2 font-mono font-bold text-[11px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center whitespace-nowrap select-none"
+        title="Scroll to Top"
+      >
+        <span>{time.short}</span>
+      </div>
+    </>
+  );
+}
+
 export function Navbar() {
   const { activeTheme, scratchpadOpen, setScratchpadOpen, toggleScratchpad } = useTheme();
 
   // Navigation & Workspace State
   const [activeWorkspace, setActiveWorkspace] = useState(1);
-  const [formattedTime, setFormattedTime] = useState("09:20 PM  Thu 01");
-  const [shortTime, setShortTime] = useState("09:20 PM");
 
   // Popups & Drawer States
   const [controlCenterOpen, setControlCenterOpen] = useState(false);
@@ -61,24 +105,6 @@ export function Navbar() {
   const [isMuted, setIsMuted] = useState(false);
   const [brightness, setBrightness] = useState(100);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
-
-  // Live Clock Synchronization matching Clock.qml
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hours = String(now.getHours() % 12 || 12).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const ampm = now.getHours() >= 12 ? "PM" : "AM";
-      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const dayName = days[now.getDay()];
-      const dayNum = String(now.getDate()).padStart(2, "0");
-      setFormattedTime(`${hours}:${minutes} ${ampm}  ${dayName} ${dayNum}`);
-      setShortTime(`${hours}:${minutes} ${ampm}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Update active workspace based on scroll position
   useEffect(() => {
@@ -199,22 +225,7 @@ export function Navbar() {
           {/* ================================================================ */}
           {/* CENTER MODULE: Clock.qml Centered */}
           {/* ================================================================ */}
-          <div 
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="hidden md:flex absolute left-1/2 -translate-x-1/2 font-mono font-bold text-xs sm:text-[13px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center gap-1.5 whitespace-nowrap select-none"
-            title="Scroll to Top"
-          >
-            <span>{formattedTime}</span>
-          </div>
-
-          {/* Compact Clock for Tablet / Intermediate viewports */}
-          <div 
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="hidden min-[540px]:flex md:hidden absolute left-1/2 -translate-x-1/2 font-mono font-bold text-[11px] text-white tracking-wider cursor-pointer hover:text-primary transition-colors items-center whitespace-nowrap select-none"
-            title="Scroll to Top"
-          >
-            <span>{shortTime}</span>
-          </div>
+          <NavbarClock />
 
           {/* ================================================================ */}
           {/* RIGHT MODULES: Ledge, MiniPlayer, Tray Drawer, Status Cluster */}
