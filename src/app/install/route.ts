@@ -5,6 +5,11 @@ const INSTALL_SCRIPT = `#!/usr/bin/env bash
 # ==============================================================================
 set -euo pipefail
 
+# Reconnect stdin to controlling terminal if piped (e.g. curl ... | sh)
+if [ ! -t 0 ] && [ -e /dev/tty ]; then
+    exec </dev/tty 2>/dev/null || true
+fi
+
 BOLD='\\033[1m'
 RED='\\033[0;31m'
 GREEN='\\033[0;32m'
@@ -45,7 +50,11 @@ fi
 
 echo -e "\${GREEN}==> Repository ready. Handing off to automated installer...\${NC}\\n"
 chmod +x "\$TARGET_DIR/install.sh"
-exec "\$TARGET_DIR/install.sh" "\$@"
+if [ -e /dev/tty ]; then
+    exec "\$TARGET_DIR/install.sh" "\$@" </dev/tty
+else
+    exec "\$TARGET_DIR/install.sh" "\$@"
+fi
 `;
 
 export async function GET() {
