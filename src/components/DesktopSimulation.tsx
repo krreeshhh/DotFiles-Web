@@ -245,9 +245,9 @@ export function DesktopSimulation() {
                 <div className="flex items-center gap-1 overflow-x-auto w-full sm:w-auto pb-0.5 sm:pb-0 no-scrollbar">
                   <button 
                     onClick={() => setActiveTerminalTab("fastfetch")}
-                    className={`px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-colors shrink-0 ${
+                    className={`px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-all shrink-0 btn-tactile ${
                       activeTerminalTab === "fastfetch" 
-                        ? "bg-primary text-on-primary font-bold" 
+                        ? "bg-primary text-on-primary font-bold shadow-xs" 
                         : "text-white/60 hover:text-white hover:bg-white/10"
                     }`}
                   >
@@ -255,9 +255,9 @@ export function DesktopSimulation() {
                   </button>
                   <button 
                     onClick={() => setActiveTerminalTab("hyprctl")}
-                    className={`px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-colors shrink-0 ${
+                    className={`px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-all shrink-0 btn-tactile ${
                       activeTerminalTab === "hyprctl" 
-                        ? "bg-primary text-on-primary font-bold" 
+                        ? "bg-primary text-on-primary font-bold shadow-xs" 
                         : "text-white/60 hover:text-white hover:bg-white/10"
                     }`}
                   >
@@ -265,9 +265,9 @@ export function DesktopSimulation() {
                   </button>
                   <button 
                     onClick={() => setActiveTerminalTab("verify")}
-                    className={`px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-colors shrink-0 ${
+                    className={`px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-mono transition-all shrink-0 btn-tactile ${
                       activeTerminalTab === "verify" 
-                        ? "bg-primary text-on-primary font-bold" 
+                        ? "bg-primary text-on-primary font-bold shadow-xs" 
                         : "text-white/60 hover:text-white hover:bg-white/10"
                     }`}
                   >
@@ -299,13 +299,13 @@ export function DesktopSimulation() {
                     </div>
 
                     <div className="pt-3 flex items-center gap-1.5 flex-wrap">
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.primary }} title={`Primary: ${activeTheme.colors.primary}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.secondary }} title={`Secondary: ${activeTheme.colors.secondary}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.primary_container }} title={`Primary Container: ${activeTheme.colors.primary_container}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.surface }} title={`Surface: ${activeTheme.colors.surface}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.surface_variant }} title={`Surface Variant: ${activeTheme.colors.surface_variant}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.outline }} title={`Outline: ${activeTheme.colors.outline}`} />
-                      <span className="w-3 h-3 rounded" style={{ backgroundColor: activeTheme.colors.on_surface }} title={`On Surface: ${activeTheme.colors.on_surface}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.primary }} title={`Primary: ${activeTheme.colors.primary}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.secondary }} title={`Secondary: ${activeTheme.colors.secondary}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.primary_container }} title={`Primary Container: ${activeTheme.colors.primary_container}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.surface }} title={`Surface: ${activeTheme.colors.surface}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.surface_variant }} title={`Surface Variant: ${activeTheme.colors.surface_variant}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.outline }} title={`Outline: ${activeTheme.colors.outline}`} />
+                      <span className="w-3.5 h-3.5 rounded shadow-xs hover:scale-110 transition-transform cursor-pointer" style={{ backgroundColor: activeTheme.colors.on_surface }} title={`On Surface: ${activeTheme.colors.on_surface}`} />
                     </div>
 
                     <p className="pt-2 text-emerald-400">$ echo &quot;Ready for deployment on fresh Arch install.&quot;</p>
@@ -345,13 +345,14 @@ export function DesktopSimulation() {
           <AnimatePresence>
             {controlCenterOpen && (
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95, y: -15 }}
+                initial={{ opacity: 0, scale: 0.94, y: -8 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -15 }}
-                className="absolute top-11 right-2 left-2 sm:left-auto sm:right-3 z-40 w-auto sm:w-76 max-w-xs mx-auto rounded-2xl p-4 shadow-2xl backdrop-blur-2xl text-left border"
+                exit={{ opacity: 0, scale: 0.94, y: -8 }}
+                transition={{ type: "spring", damping: 28, stiffness: 350 }}
+                className="absolute top-11 right-2 left-2 sm:left-auto sm:right-3 z-40 w-auto sm:w-76 max-w-xs mx-auto rounded-2xl p-4 glass-floating shadow-2xl text-left border gpu-layer"
                 style={{ 
-                  background: "rgba(31, 24, 29, 0.96)",
-                  borderColor: "var(--color-outline)"
+                  transformOrigin: "top right",
+                  borderColor: "rgba(255, 255, 255, 0.12)"
                 }}
               >
                 <div className="flex items-center justify-between border-b border-outline/40 pb-2 mb-3">
@@ -360,7 +361,7 @@ export function DesktopSimulation() {
                   </span>
                   <button 
                     onClick={() => setControlCenterOpen(false)}
-                    className="p-1 rounded-lg hover:bg-surface-variant text-on-surface-variant hover:text-on-surface"
+                    className="p-1 rounded-lg hover:bg-surface-variant text-on-surface-variant hover:text-on-surface btn-tactile"
                   >
                     <LuX className="w-4 h-4" />
                   </button>
@@ -368,17 +369,17 @@ export function DesktopSimulation() {
 
                 {/* Quick Toggles */}
                 <div className="grid grid-cols-3 gap-2 mb-4">
-                  <button className="flex flex-col items-center justify-center p-2 rounded-xl bg-primary text-on-primary font-semibold text-xs transition-all shadow-sm">
+                  <button className="flex flex-col items-center justify-center p-2 rounded-xl bg-primary text-on-primary font-semibold text-xs btn-tactile shadow-sm">
                     <LuWifi className="w-3.5 h-3.5 mb-1" />
                     <span>Wi-Fi</span>
                   </button>
-                  <button className="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-variant text-on-surface hover:bg-surface-selected text-xs transition-all border border-outline/30">
+                  <button className="flex flex-col items-center justify-center p-2 rounded-xl bg-surface-variant text-on-surface hover:bg-surface-selected text-xs btn-tactile border border-outline/30">
                     <LuBluetooth className="w-3.5 h-3.5 mb-1 text-primary" />
                     <span>Bluetooth</span>
                   </button>
                   <button 
                     onClick={() => setCaffeineActive(!caffeineActive)}
-                    className={`flex flex-col items-center justify-center p-2 rounded-xl text-xs transition-all border ${
+                    className={`flex flex-col items-center justify-center p-2 rounded-xl text-xs btn-tactile border ${
                       caffeineActive 
                         ? "bg-amber-500/20 text-amber-300 border-amber-500/50 font-bold" 
                         : "bg-surface-variant text-on-surface hover:bg-surface-selected border-outline/30"
@@ -400,9 +401,9 @@ export function DesktopSimulation() {
                       type="range" 
                       min="10" 
                       max="100" 
-                      value={brightness}
+                      value={brightness} 
                       onChange={(e) => setBrightness(Number(e.target.value))}
-                      className="w-full accent-primary h-1.5 bg-surface-variant rounded-lg cursor-pointer"
+                      className="w-full accent-primary h-1.5 bg-surface-variant rounded-lg cursor-pointer transition-all"
                     />
                   </div>
 
@@ -415,9 +416,9 @@ export function DesktopSimulation() {
                       type="range" 
                       min="0" 
                       max="100" 
-                      value={volume}
+                      value={volume} 
                       onChange={(e) => setVolume(Number(e.target.value))}
-                      className="w-full accent-primary h-1.5 bg-surface-variant rounded-lg cursor-pointer"
+                      className="w-full accent-primary h-1.5 bg-surface-variant rounded-lg cursor-pointer transition-all"
                     />
                   </div>
                 </div>
@@ -431,14 +432,17 @@ export function DesktopSimulation() {
           <AnimatePresence>
             {launcherOpen && (
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 className="absolute inset-0 z-40 bg-background/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-4"
               >
-                <div 
-                  className="w-full max-w-md rounded-2xl glass-panel border border-outline p-4 sm:p-5 shadow-2xl"
-                  style={{ background: "rgba(31, 24, 29, 0.96)" }}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.94, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.94, y: 10 }}
+                  transition={{ type: "spring", damping: 28, stiffness: 350 }}
+                  className="w-full max-w-md rounded-2xl glass-floating border border-white/10 p-4 sm:p-5 shadow-2xl gpu-layer"
                 >
                   <div className="flex items-center justify-between pb-2.5 border-b border-outline/40 mb-3 sm:mb-4">
                     <div className="flex items-center gap-2 text-primary font-mono text-xs sm:text-sm font-bold truncate mr-2">
@@ -447,7 +451,7 @@ export function DesktopSimulation() {
                     </div>
                     <button 
                       onClick={() => setLauncherOpen(false)}
-                      className="p-1 rounded-lg hover:bg-surface-variant text-on-surface-variant shrink-0"
+                      className="p-1 rounded-lg hover:bg-surface-variant text-on-surface-variant shrink-0 btn-tactile"
                     >
                       <LuX className="w-4 h-4" />
                     </button>
@@ -488,7 +492,7 @@ export function DesktopSimulation() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>

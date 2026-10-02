@@ -403,19 +403,18 @@ export function Navbar() {
         {controlCenterOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs transition-opacity"
               onClick={() => setControlCenterOpen(false)}
             />
             <motion.div 
-              initial={{ opacity: 0, y: -10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.96 }}
-              transition={{ duration: 0.18 }}
-              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-3 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
+              initial={{ opacity: 0, scale: 0.94, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: -6 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-3 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 glass-floating border shadow-2xl mx-auto gpu-layer"
               style={{
-                background: "rgba(31, 24, 29, 0.95)",
-                backdropFilter: "blur(24px)",
-                borderColor: "rgba(65, 47, 59, 0.6)",
+                transformOrigin: "top right",
+                borderColor: "rgba(255, 255, 255, 0.12)",
               }}
             >
               {/* Modal Header */}
@@ -426,7 +425,7 @@ export function Navbar() {
                 </div>
                 <button 
                   onClick={() => setControlCenterOpen(false)}
-                  className="p-1 rounded-md text-white/50 hover:text-white hover:bg-white/10"
+                  className="p-1 rounded-md text-white/50 hover:text-white hover:bg-white/10 btn-tactile"
                 >
                   <LuX className="w-3.5 h-3.5" />
                 </button>
@@ -435,35 +434,35 @@ export function Navbar() {
               {/* Quick Settings Toggles Grid */}
               <div className="grid grid-cols-2 gap-2 mb-4">
                 <button 
-                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/20 border border-primary/40 text-left transition-colors"
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/20 border border-primary/40 text-left btn-tactile shadow-xs"
                 >
                   <LuWifi className="w-4 h-4 text-primary" />
                   <div>
                     <div className="text-xs font-semibold text-white">Wi-Fi</div>
-                    <div className="text-[10px] text-primary">Connected</div>
+                    <div className="text-[10px] text-primary font-mono">Connected</div>
                   </div>
                 </button>
 
                 <button 
-                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/20 border border-primary/40 text-left transition-colors"
+                  className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/20 border border-primary/40 text-left btn-tactile shadow-xs"
                 >
                   <LuBluetooth className="w-4 h-4 text-primary" />
                   <div>
                     <div className="text-xs font-semibold text-white">Bluetooth</div>
-                    <div className="text-[10px] text-primary">Active</div>
+                    <div className="text-[10px] text-primary font-mono">Active</div>
                   </div>
                 </button>
 
                 <button 
                   onClick={() => setCaffeineActive(!caffeineActive)}
-                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-left transition-colors ${
+                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-left btn-tactile ${
                     caffeineActive ? "bg-primary/20 border-primary/40" : "bg-white/5 border-white/10 text-white/70"
                   }`}
                 >
                   <LuCoffee className={`w-4 h-4 ${caffeineActive ? "text-primary" : "text-white/50"}`} />
                   <div>
                     <div className="text-xs font-semibold text-white">Caffeine</div>
-                    <div className={`text-[10px] ${caffeineActive ? "text-primary" : "text-white/40"}`}>
+                    <div className={`text-[10px] font-mono ${caffeineActive ? "text-primary" : "text-white/40"}`}>
                       {caffeineActive ? "Active" : "Off"}
                     </div>
                   </div>
@@ -471,14 +470,14 @@ export function Navbar() {
 
                 <button 
                   onClick={() => setDndActive(!dndActive)}
-                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-left transition-colors ${
+                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-left btn-tactile ${
                     dndActive ? "bg-amber-500/20 border-amber-500/40" : "bg-white/5 border-white/10 text-white/70"
                   }`}
                 >
                   <LuBell className={`w-4 h-4 ${dndActive ? "text-amber-400" : "text-white/50"}`} />
                   <div>
                     <div className="text-xs font-semibold text-white">DND</div>
-                    <div className={`text-[10px] ${dndActive ? "text-amber-400" : "text-white/40"}`}>
+                    <div className={`text-[10px] font-mono ${dndActive ? "text-amber-400" : "text-white/40"}`}>
                       {dndActive ? "Muted" : "Off"}
                     </div>
                   </div>
@@ -486,11 +485,11 @@ export function Navbar() {
               </div>
 
               {/* Sliders: Volume & Brightness */}
-              <div className="space-y-3 mb-4 bg-black/20 p-3 rounded-xl border border-white/5">
+              <div className="space-y-3 mb-4 bg-black/25 p-3 rounded-xl border border-white/5">
                 <div>
                   <div className="flex justify-between text-[11px] font-mono text-white/70 mb-1">
                     <span className="flex items-center gap-1.5"><LuVolume2 className="w-3.5 h-3.5 text-primary" /> Volume</span>
-                    <span>{volume}%</span>
+                    <span className="font-semibold text-white">{volume}%</span>
                   </div>
                   <input 
                     type="range" 
@@ -498,14 +497,14 @@ export function Navbar() {
                     max="100" 
                     value={volume} 
                     onChange={(e) => setVolume(Number(e.target.value))}
-                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer"
+                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer transition-all"
                   />
                 </div>
 
                 <div>
                   <div className="flex justify-between text-[11px] font-mono text-white/70 mb-1">
                     <span className="flex items-center gap-1.5"><LuSun className="w-3.5 h-3.5 text-primary" /> Backlight</span>
-                    <span>{brightness}%</span>
+                    <span className="font-semibold text-white">{brightness}%</span>
                   </div>
                   <input 
                     type="range" 
@@ -513,7 +512,7 @@ export function Navbar() {
                     max="100" 
                     value={brightness} 
                     onChange={(e) => setBrightness(Number(e.target.value))}
-                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer"
+                    className="w-full accent-primary h-1.5 bg-white/20 rounded-lg cursor-pointer transition-all"
                   />
                 </div>
               </div>
@@ -522,13 +521,13 @@ export function Navbar() {
               <div className="flex items-center justify-between pt-2 border-t border-white/10 text-white/60">
                 <span className="text-[11px] font-mono truncate mr-2">Arch Linux · Hyprland</span>
                 <div className="flex items-center gap-2 shrink-0">
-                  <button className="p-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" title="Lock Screen">
+                  <button className="p-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors btn-tactile" title="Lock Screen">
                     <LuMoon className="w-3.5 h-3.5" />
                   </button>
-                  <button className="p-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors" title="Restart Session">
+                  <button className="p-1.5 rounded-lg bg-white/5 hover:bg-primary/20 hover:text-primary transition-colors btn-tactile" title="Restart Session">
                     <LuRefreshCw className="w-3.5 h-3.5" />
                   </button>
-                  <button className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-colors" title="Power Menu">
+                  <button className="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 transition-colors btn-tactile" title="Power Menu">
                     <LuPower className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -545,19 +544,18 @@ export function Navbar() {
         {clipseOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs transition-opacity"
               onClick={() => setClipseOpen(false)}
             />
             <motion.div 
-              initial={{ opacity: 0, y: -10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.96 }}
-              transition={{ duration: 0.18 }}
-              className="fixed top-11 left-2 right-2 sm:right-auto sm:left-3 w-auto sm:w-84 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
+              initial={{ opacity: 0, scale: 0.94, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: -6 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="fixed top-11 left-2 right-2 sm:right-auto sm:left-3 w-auto sm:w-84 max-w-sm rounded-2xl p-4 z-50 glass-floating border shadow-2xl mx-auto gpu-layer"
               style={{
-                background: "rgba(31, 24, 29, 0.96)",
-                backdropFilter: "blur(24px)",
-                borderColor: "rgba(65, 47, 59, 0.6)",
+                transformOrigin: "top left",
+                borderColor: "rgba(255, 255, 255, 0.12)",
               }}
             >
               <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
@@ -567,7 +565,7 @@ export function Navbar() {
                 </div>
                 <button 
                   onClick={() => setClipseOpen(false)}
-                  className="p-1 rounded-md text-white/50 hover:text-white"
+                  className="p-1 rounded-md text-white/50 hover:text-white btn-tactile"
                 >
                   <LuX className="w-3.5 h-3.5" />
                 </button>
@@ -583,7 +581,7 @@ export function Navbar() {
                   <div 
                     key={item.id}
                     onClick={() => handleCopyText(item.text, item.id)}
-                    className="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/40 transition-colors cursor-pointer group"
+                    className="p-2.5 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/40 transition-colors cursor-pointer group btn-tactile"
                   >
                     <div className="flex items-center justify-between text-[11px] font-mono text-primary mb-1">
                       <span>{item.label}</span>
@@ -611,19 +609,18 @@ export function Navbar() {
         {ledgeOpen && (
           <>
             <div 
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs transition-opacity"
               onClick={() => setLedgeOpen(false)}
             />
             <motion.div 
-              initial={{ opacity: 0, y: -10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.96 }}
-              transition={{ duration: 0.18 }}
-              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-20 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 border shadow-2xl mx-auto"
+              initial={{ opacity: 0, scale: 0.94, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: -6 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="fixed top-11 right-2 left-2 sm:left-auto sm:right-20 w-auto sm:w-80 max-w-sm rounded-2xl p-4 z-50 glass-floating border shadow-2xl mx-auto gpu-layer"
               style={{
-                background: "rgba(31, 24, 29, 0.96)",
-                backdropFilter: "blur(24px)",
-                borderColor: "rgba(65, 47, 59, 0.6)",
+                transformOrigin: "top right",
+                borderColor: "rgba(255, 255, 255, 0.12)",
               }}
             >
               <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
@@ -633,7 +630,7 @@ export function Navbar() {
                 </div>
                 <button 
                   onClick={() => setLedgeOpen(false)}
-                  className="p-1 rounded-md text-white/50 hover:text-white"
+                  className="p-1 rounded-md text-white/50 hover:text-white btn-tactile"
                 >
                   <LuX className="w-3.5 h-3.5" />
                 </button>
@@ -669,21 +666,20 @@ export function Navbar() {
         {appLauncherOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
             <motion.div 
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.2 }}
-              className="w-full max-w-lg rounded-2xl p-4 sm:p-6 border shadow-2xl relative"
+              initial={{ opacity: 0, scale: 0.94, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 10 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="w-full max-w-lg rounded-2xl p-4 sm:p-6 glass-floating border shadow-2xl relative gpu-layer"
               style={{
-                background: "rgba(31, 24, 29, 0.96)",
-                borderColor: "rgba(225, 131, 194, 0.4)",
-                boxShadow: "0 0 35px -5px rgba(225, 131, 194, 0.25)",
+                transformOrigin: "center",
+                borderColor: "rgba(255, 255, 255, 0.16)",
               }}
             >
               {/* Close Button */}
               <button 
                 onClick={() => setAppLauncherOpen(false)}
-                className="absolute top-4 right-4 p-1 rounded-lg text-white/50 hover:text-white"
+                className="absolute top-4 right-4 p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 btn-tactile"
               >
                 <LuX className="w-4 h-4" />
               </button>
@@ -712,7 +708,7 @@ export function Navbar() {
                   <button 
                     key={i}
                     onClick={app.action}
-                    className="flex flex-col items-start p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group cursor-pointer"
+                    className="flex flex-col items-start p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-primary/50 hover:bg-primary/10 transition-all text-left group cursor-pointer btn-tactile"
                   >
                     <app.icon className="w-4 h-4 text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-semibold text-white">{app.name}</span>

@@ -99,8 +99,8 @@ export function Hero() {
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-3 sm:mb-4 font-sans leading-tight"
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-on-surface mb-3 sm:mb-4 font-sans display-title"
         >
           Your Arch Linux Desktop, <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary animate-gradient">
@@ -113,7 +113,7 @@ export function Hero() {
           key={`quote-${activeTheme.id}`}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl mx-auto mb-4"
         >
           <p className="text-xs sm:text-sm font-mono text-primary/90 italic tracking-wide">
@@ -125,7 +125,7 @@ export function Hero() {
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl mx-auto text-xs sm:text-base text-on-surface-variant leading-relaxed mb-6 sm:mb-10 px-2 sm:px-0"
         >
           A deterministic Wayland environment combining native Lua Hyprland configuration, a modular Quickshell desktop shell, live Material You palette generation from wallpapers, and universal Picture-in-Picture pin management.
@@ -135,39 +135,39 @@ export function Hero() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-4xl mx-auto mb-8 sm:mb-12"
         >
-          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface shadow-xs">
             <LuCpu className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Hyprland 0.56 Lua API
           </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface shadow-xs">
             <LuLayers className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Quickshell Shell
           </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface shadow-xs">
             <LuMonitor className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> {activeTheme.colors.accent_name}
           </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface shadow-xs">
             <LuTerminal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Ghostty (0.20 Opacity)
           </span>
-          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface">
+          <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-surface/70 border border-outline/40 text-[10px] sm:text-xs font-mono text-on-surface shadow-xs">
             <LuPlay className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" /> Universal PiP
           </span>
           <button 
             onClick={toggleScratchpad}
-            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-primary/15 border border-primary/40 text-[10px] sm:text-xs font-mono text-primary hover:bg-primary/25 transition-all cursor-pointer shadow-xs"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-lg bg-primary/15 border border-primary/40 text-[10px] sm:text-xs font-mono text-primary hover:bg-primary/25 transition-all cursor-pointer shadow-xs btn-tactile"
             title="Press W to open Wallpaper & Theme Scratchpad"
           >
-            <LuSparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary animate-pulse" /> Press <kbd className="px-1 py-0.2 bg-primary/20 rounded font-bold">W</kbd> for Wallpapers
+            <LuSparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary animate-pulse" /> Press <kbd className="keycap px-1.5 py-0.5 rounded font-bold text-white">W</kbd> for Wallpapers
           </button>
         </motion.div>
 
         {/* Interactive Quick Install Terminal Card */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-4xl mx-auto rounded-2xl glass-panel border border-outline/60 p-2 sm:p-4 shadow-2xl relative"
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl mx-auto rounded-2xl glass-floating border border-white/10 p-2 sm:p-4 shadow-2xl relative gpu-layer"
         >
           {/* Terminal Title Bar */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 px-2 sm:px-3 py-2 border-b border-outline/30 mb-3">
@@ -186,9 +186,9 @@ export function Hero() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-xs font-mono transition-all whitespace-nowrap shrink-0 ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-xs font-mono transition-all whitespace-nowrap shrink-0 btn-tactile ${
                     activeTab.id === tab.id
-                      ? "bg-primary-container text-primary border border-primary/40 font-semibold"
+                      ? "bg-primary-container text-primary border border-primary/40 font-semibold shadow-xs"
                       : "text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/60"
                   }`}
                 >
@@ -198,7 +198,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Command Display & One-Click Copy */}
+            {/* Command Display & One-Click Copy */}
           <div className="bg-background/90 rounded-xl p-3 sm:p-4 border border-outline/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 font-mono text-xs sm:text-sm text-left">
             <div className="flex items-start sm:items-center gap-2 sm:gap-3 w-full py-1 text-on-surface">
               <span className="text-primary font-bold select-none pt-0.5 sm:pt-0">$</span>
@@ -209,10 +209,10 @@ export function Hero() {
 
             <button
               onClick={handleCopy}
-              className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-sans font-semibold transition-all shrink-0 w-full sm:w-auto justify-center cursor-pointer ${
+              className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs font-sans font-semibold transition-all shrink-0 w-full sm:w-auto justify-center cursor-pointer btn-tactile ${
                 copied
                   ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/50"
-                  : "bg-primary text-on-primary hover:opacity-90 active:scale-95 shadow-md shadow-primary/20"
+                  : "bg-primary text-on-primary hover:opacity-90 shadow-md shadow-primary/20"
               }`}
             >
               {copied ? (

@@ -29,14 +29,14 @@ export function ArchitectureDocs() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/80 border border-primary/40 text-xs font-mono text-primary mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/80 border border-primary/40 text-xs font-mono text-primary mb-3 shadow-xs">
             <LuFolderTree className="w-3.5 h-3.5" />
             <span>Deterministic Reproduction</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-on-surface mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-on-surface mb-3 sm:mb-4 section-title">
             Deployment & System Manifests
           </h2>
-          <p className="text-on-surface-variant text-xs sm:text-base px-2 sm:px-0">
+          <p className="text-on-surface-variant text-xs sm:text-base px-2 sm:px-0 leading-relaxed">
             Every file, daemon unit, standalone binary, and package dependency is tracked and validated across 72 automated checks.
           </p>
         </div>
@@ -45,7 +45,7 @@ export function ArchitectureDocs() {
         <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 overflow-x-auto pb-1.5 sm:pb-0 no-scrollbar w-full flex-nowrap">
           <button
             onClick={() => setActiveDocTab("structure")}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 btn-tactile ${
               activeDocTab === "structure"
                 ? "bg-primary text-on-primary font-bold shadow-md shadow-primary/20"
                 : "bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-outline/40"
@@ -57,7 +57,7 @@ export function ArchitectureDocs() {
 
           <button
             onClick={() => setActiveDocTab("packages")}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 btn-tactile ${
               activeDocTab === "packages"
                 ? "bg-primary text-on-primary font-bold shadow-md shadow-primary/20"
                 : "bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-outline/40"
@@ -69,7 +69,7 @@ export function ArchitectureDocs() {
 
           <button
             onClick={() => setActiveDocTab("installer")}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all whitespace-nowrap shrink-0 btn-tactile ${
               activeDocTab === "installer"
                 ? "bg-primary text-on-primary font-bold shadow-md shadow-primary/20"
                 : "bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-outline/40"
@@ -81,7 +81,7 @@ export function ArchitectureDocs() {
         </div>
 
         {/* Content Panels */}
-        <div className="rounded-2xl glass-panel border border-outline/60 p-4 sm:p-6 shadow-2xl text-left">
+        <div className="rounded-2xl glass-floating border border-white/10 p-4 sm:p-6 shadow-2xl text-left gpu-layer">
           
           {/* TAB 1: File Structure */}
           {activeDocTab === "structure" && (

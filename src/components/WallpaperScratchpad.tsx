@@ -296,16 +296,15 @@ export function WallpaperScratchpad() {
             {/* BOTTOM PILL NAVIGATION BAR (pill_w = 360px, pill_h = 32px) */}
             {/* ================================================================ */}
             <div 
-              className="flex items-center justify-between w-[320px] sm:w-[360px] h-8 sm:h-[32px] px-2 rounded-full border shadow-2xl backdrop-blur-xl"
+              className="flex items-center justify-between w-[320px] sm:w-[360px] h-8 sm:h-[34px] px-2 rounded-full glass-floating border shadow-2xl gpu-layer"
               style={{
-                background: "rgba(31, 24, 27, 0.75)",
-                borderColor: "rgba(65, 47, 59, 0.50)",
+                borderColor: "rgba(255, 255, 255, 0.14)",
               }}
             >
               {/* Left Arrow Button */}
               <button
                 onClick={handlePrev}
-                className="w-7 h-6 rounded-full flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+                className="w-7 h-6 rounded-full flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer btn-tactile"
                 title="Previous (Left Arrow / h)"
               >
                 <LuChevronLeft className="w-4 h-4 font-bold" />
@@ -314,7 +313,7 @@ export function WallpaperScratchpad() {
               {/* Center Status & Keybind Hint */}
               <button
                 onClick={handleApply}
-                className="flex-1 font-mono text-[11px] sm:text-xs text-white/80 hover:text-white font-medium text-center transition-colors cursor-pointer truncate px-2"
+                className="flex-1 font-mono text-[11px] sm:text-xs text-white/80 hover:text-white font-medium text-center transition-colors cursor-pointer truncate px-2 btn-tactile"
                 title="Click or press Enter to apply"
               >
                 <span>Enter Apply &nbsp;·&nbsp; Esc Close &nbsp;·&nbsp; {currentIndex + 1}/{count}</span>
@@ -323,7 +322,7 @@ export function WallpaperScratchpad() {
               {/* Right Arrow Button */}
               <button
                 onClick={handleNext}
-                className="w-7 h-6 rounded-full flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+                className="w-7 h-6 rounded-full flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer btn-tactile"
                 title="Next (Right Arrow / l)"
               >
                 <LuChevronRight className="w-4 h-4 font-bold" />

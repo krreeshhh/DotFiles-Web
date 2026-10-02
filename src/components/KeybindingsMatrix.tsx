@@ -65,14 +65,14 @@ export function KeybindingsMatrix() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/80 border border-primary/40 text-xs font-mono text-primary mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/80 border border-primary/40 text-xs font-mono text-primary mb-3 shadow-xs">
             <LuKeyboard className="w-3.5 h-3.5" />
             <span>Ergonomic Control</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-on-surface mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-on-surface mb-3 sm:mb-4 section-title">
             Compositor Keybindings Reference
           </h2>
-          <p className="text-on-surface-variant text-xs sm:text-base px-2 sm:px-0">
+          <p className="text-on-surface-variant text-xs sm:text-base px-2 sm:px-0 leading-relaxed">
             Configured for keyboard-centric productivity with unified hotkey bindings across Hyprland, Quickshell, and media services.
           </p>
         </div>
@@ -88,7 +88,7 @@ export function KeybindingsMatrix() {
               placeholder="Search keys or actions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-surface border border-outline/60 text-xs font-mono text-on-surface placeholder:text-on-surface-variant focus:outline-hidden focus:border-primary transition-all"
+              className="w-full pl-10 pr-4 py-2 rounded-xl bg-surface border border-outline/60 text-xs font-mono text-on-surface placeholder:text-on-surface-variant focus:outline-hidden focus:border-primary transition-all shadow-xs"
             />
           </div>
 
@@ -98,7 +98,7 @@ export function KeybindingsMatrix() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all whitespace-nowrap shrink-0 ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all whitespace-nowrap shrink-0 btn-tactile ${
                   selectedCategory === cat
                     ? "bg-primary text-on-primary font-bold shadow-sm shadow-primary/20"
                     : "bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-outline/40"
@@ -112,7 +112,7 @@ export function KeybindingsMatrix() {
         </div>
 
         {/* Keybindings Table Grid */}
-        <div className="rounded-2xl glass-panel border border-outline/60 overflow-hidden shadow-xl">
+        <div className="rounded-2xl glass-panel border border-white/10 overflow-hidden shadow-2xl gpu-layer">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse font-sans text-xs">
               <thead>
@@ -133,7 +133,7 @@ export function KeybindingsMatrix() {
                           {kb.combo.map((key, kIdx) => (
                             <kbd 
                               key={kIdx}
-                              className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-surface-variant border border-outline/70 font-mono text-[10px] sm:text-[11px] font-semibold text-primary shadow-sm"
+                              className="keycap px-2 py-1 rounded-md font-mono text-[10px] sm:text-[11px] font-semibold text-primary"
                             >
                               {key}
                             </kbd>
