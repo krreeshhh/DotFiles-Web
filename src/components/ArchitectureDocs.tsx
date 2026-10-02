@@ -109,24 +109,28 @@ export function ArchitectureDocs() {
 │   │   ├── grub/silent/     # Minimalist GRUB bootloader theme
 │   │   └── sddm/qylock-sword/ # Animated video-backed SDDM login theme
 │   └── wallpapers/          # Packaged collection (27 aesthetic wallpapers)
-├── bin/                     # Standalone binaries (hypr-pip-helper, clipse, strata)
+├── bin/                     # Standalone binaries (hypr-pip-helper, clipse, strata, mechanic, mechanic-askpass)
 ├── config/
 │   ├── clipse/              # Clipboard manager config
 │   ├── dunst/               # Notification styling
-│   ├── environment.d/       # Session environment variables
+│   ├── environment.d/       # Session environment variables (SUDO_ASKPASS, QML_IMPORT_PATH)
 │   ├── ghostty/             # Ghostty terminal config (0.20 opacity)
 │   ├── gtk-3.0/ & gtk-4.0/  # GTK interface themes (WhiteSur-dark)
 │   ├── hypr/                # Hyprland (hyprland.lua, pip.lua, scripts/)
 │   ├── my-desktop/          # Dynamic Material You theme extractor & wallpaper picker
 │   ├── nwg-bar/             # Power menu layout
-│   ├── quickshell/          # Modular QML desktop shell (Bar, Popups, OSD, Plugins)
-│   ├── systemd/user/        # User services (elephant, hypr-pip, quickshell)
+│   ├── quickshell/          # Modular QML shell (Bar, Popups, OSD, AuthDialog sudo modal, Plugins)
+│   ├── systemd/user/        # User services (elephant, hypr-pip, quickshell, omarchy-crash-watch)
 │   ├── walker/              # Walker launcher application provider config
 │   └── yazi/                # Terminal file manager configuration
+├── home/
+│   ├── .agents/             # Antigravity agent system (mechanic skill, rules, diagnose-crash, quickshell-dev)
+│   ├── .bashrc              # Shell config with SUDO_ASKPASS and agent aliases
+│   └── .bash_profile        # Profile login initializers
 ├── packages/                # Package manifests (pacman-runtime, aur-runtime, fonts)
-├── scripts/                 # Automated test runner (verify.sh)
-├── install.sh               # Fully automated installer with hardware autodetection
-├── MANIFEST.md              # Complete catalog of all 392 tracked files
+├── scripts/                 # Automated test runner (verify.sh with 83 automated checks)
+├── install.sh               # Fully automated installer with hardware autodetection & pre-checks
+├── MANIFEST.md              # Complete catalog of all tracked dotfiles
 └── REPRODUCTION.md          # Step-by-step reproduction guide`}
               </pre>
             </div>
