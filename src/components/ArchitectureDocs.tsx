@@ -154,6 +154,9 @@ export function ArchitectureDocs() {
                     <li>• <strong className="text-on-surface">ghostty</strong> (GPU Terminal)</li>
                     <li>• <strong className="text-on-surface">pipewire, wireplumber</strong> (Audio Core)</li>
                     <li>• <strong className="text-on-surface">nautilus, file-roller</strong> (File Management)</li>
+                    <li>• <strong className="text-on-surface">udisks2, udiskie</strong> (USB Automount & Storage)</li>
+                    <li>• <strong className="text-on-surface">gvfs, gvfs-mtp, gvfs-afc</strong> (MTP, Android & iOS USB)</li>
+                    <li>• <strong className="text-on-surface">ntfs-3g, exfatprogs, dosfstools</strong> (USB Filesystems)</li>
                     <li>• <strong className="text-on-surface">dunst, libnotify</strong> (Notifications)</li>
                     <li>• <strong className="text-on-surface">brightnessctl, playerctl</strong> (Hardware)</li>
                     <li>• <strong className="text-on-surface">python-pillow, python-gobject</strong> (Theme Engine)</li>
